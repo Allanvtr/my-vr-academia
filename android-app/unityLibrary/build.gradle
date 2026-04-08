@@ -1,0 +1,136 @@
+apply plugin: 'com.android.library'
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.gms:play-services-vision:20.1.3'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.protobuf:protobuf-javalite:3.19.4'
+    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+}
+
+android {
+    namespace "com.unity3d.player"
+    // ndkPath "C:/Program Files/Unity/Hub/Editor/2022.3.62f2/Editor/Data/PlaybackEngines/AndroidPlayer/NDK"
+    ndkVersion "23.1.7779620"
+    compileSdkVersion 36
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    defaultConfig {
+        minSdkVersion 26
+        targetSdkVersion 36
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+        versionCode 1
+        versionName '0.1'
+        consumerProguardFiles 'proguard-unity.txt'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    aaptOptions {
+        noCompress += [".unity3d", ".ress", ".resource", ".obb", ".bundle", ".unityexp"]
+        ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~"
+    }
+
+    packagingOptions {
+        doNotStrip '*/armeabi-v7a/*.so'
+        doNotStrip '*/arm64-v8a/*.so'
+        jniLibs {
+            useLegacyPackaging true
+        }
+    }
+}
+
+def getSdkDir() {
+    Properties local = new Properties()
+    def localPropertiesFile = new File("${rootDir}/local.properties")
+    if (localPropertiesFile.exists()) {
+        local.load(new FileInputStream(localPropertiesFile))
+        def sdkDir = local.getProperty('sdk.dir')
+        if (sdkDir != null) return sdkDir
+    }
+    return System.getenv('ANDROID_SDK_ROOT') ?: System.getenv('ANDROID_HOME')
+}
+
+def getNdkDir() {
+    Properties local = new Properties()
+    def localPropertiesFile = new File("${rootDir}/local.properties")
+    if (localPropertiesFile.exists()) {
+        local.load(new FileInputStream(localPropertiesFile))
+        def ndkDir = local.getProperty('ndk.dir')
+        if (ndkDir != null) return ndkDir
+    }
+    def sdkDir = getSdkDir()
+    if (sdkDir != null) {
+        return "${sdkDir}/ndk/${android.ndkVersion}"
+    }
+    return System.getenv('ANDROID_NDK_HOME')
+}
+
+def BuildIl2Cpp(String workingDir, String configuration, String architecture, String abi, String[] staticLibraries) {
+    def commandLineArgs = []
+    commandLineArgs.add("--compile-cpp")
+    commandLineArgs.add("--platform=Android")
+    commandLineArgs.add("--architecture=" + architecture)
+    commandLineArgs.add("--outputpath=" + workingDir + "/src/main/jniLibs/" + abi + "/libil2cpp.so")
+    commandLineArgs.add("--baselib-directory=" + workingDir + "/src/main/jniStaticLibs/" + abi)
+    commandLineArgs.add("--incremental-g-c-time-slice=3")
+    commandLineArgs.add("--configuration=" + configuration)
+    commandLineArgs.add("--dotnetprofile=unityaot-linux")
+    commandLineArgs.add("--profiler-report")
+    commandLineArgs.add("--profiler-output-file=" + workingDir + "/build/il2cpp_"+ abi + "_" + configuration + "/il2cpp_conv.traceevents")
+    commandLineArgs.add("--print-command-line")
+    commandLineArgs.add("--data-folder=" + workingDir + "/src/main/Il2CppOutputProject/Source/il2cppOutput/data")
+    commandLineArgs.add("--generatedcppdir=" + workingDir + "/src/main/Il2CppOutputProject/Source/il2cppOutput")
+    commandLineArgs.add("--cachedirectory=" + workingDir + "/build/il2cpp_"+ abi + "_" + configuration + "/il2cpp_cache")
+    
+    def ndkDir = getNdkDir()
+    commandLineArgs.add("--tool-chain-path=" + ndkDir)
+
+    staticLibraries.eachWithIndex {fileName, i->
+        commandLineArgs.add("--additional-libraries=" + workingDir + "/src/main/jniStaticLibs/" + abi + "/" + fileName)
+    }
+    def executableExtension = ""
+    if (org.gradle.internal.os.OperatingSystem.current().isWindows()) {
+        executableExtension = ".exe"
+        commandLineArgs = commandLineArgs*.replace('\"', '\\\"')
+    }
+    
+    // In Gradle 9.0+, Project.exec is removed. Use the ExecOperations service instead.
+    project.services.get(org.gradle.process.ExecOperations).exec {
+        executable workingDir + "/src/main/Il2CppOutputProject/IL2CPP/build/deploy/il2cpp" + executableExtension
+        args commandLineArgs
+        environment "ANDROID_SDK_ROOT", getSdkDir()
+    }
+
+    project.delete workingDir + "/src/main/jniLibs/" + abi + "/libil2cpp.sym.so"
+    project.ant.move(file: workingDir + "/src/main/jniLibs/" + abi + "/libil2cpp.dbg.so", tofile: workingDir + "/symbols/" + abi + "/libil2cpp.so")
+}
+
+task BuildIl2CppTask {
+    doLast {
+          BuildIl2Cpp(projectDir.toString().replaceAll('\\\\', '/'), 'Release', 'armv7', 'armeabi-v7a', [  ] as String[]);
+          BuildIl2Cpp(projectDir.toString().replaceAll('\\\\', '/'), 'Release', 'arm64', 'arm64-v8a', [  ] as String[]);
+    }
+}
+
+android {
+    afterEvaluate {
+        if (project(':unityLibrary').tasks.findByName('mergeDebugJniLibFolders'))
+            project(':unityLibrary').mergeDebugJniLibFolders.dependsOn BuildIl2CppTask
+        if (project(':unityLibrary').tasks.findByName('mergeReleaseJniLibFolders'))
+            project(':unityLibrary').mergeReleaseJniLibFolders.dependsOn BuildIl2CppTask
+    }
+    sourceSets {
+        main {
+            jni.srcDirs = ["src/main/Il2CppOutputProject"]
+        }
+    }
+}
