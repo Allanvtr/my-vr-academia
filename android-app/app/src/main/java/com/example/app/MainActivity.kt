@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         setContent {
             AppTheme {
                 MainScreen(onStartUnity = { startUnity() })
@@ -26,9 +26,12 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun startUnity() {
-        // Usando sua UnityActivity customizada
-        val intent = Intent(this, UnityActivity::class.java)
-        intent.putExtra("tempo", "10") 
+        val intent = Intent(
+            this,
+            com.unity3d.player.UnityPlayerActivity::class.java
+        )
+
+        intent.putExtra("tempo", 10) // opcional
         startActivity(intent)
     }
 }
