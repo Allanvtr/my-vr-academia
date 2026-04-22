@@ -1,8 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class GazeAnimation : MonoBehaviour
 {
-    private Camera cam;
+    public Camera cam;
     private Animator animator;
 
     public float tempoDeOlhar = 1.5f;
@@ -11,46 +11,45 @@ public class GazeAnimation : MonoBehaviour
 
     void Start()
     {
-        cam = FindObjectOfType<Camera>();
-        animator = GetComponent<Animator>();
-
-        if (animator == null)
-        {
-            Debug.LogError("Animator NÃO encontrado no objeto pai!");
-        }
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
     {
-        if (jaAtivou || cam == null || animator == null) return;
+        if (cam == null || animator == null) return;
 
-        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 50f))
+        if (Physics.SphereCast(ray, 0.3f, out hit, 50f))
         {
-            // Procura Animator no pai do objeto atingido
-            Animator animHit = hit.transform.GetComponentInParent<Animator>();
-
-            if (animHit == animator)
+            if (hit.transform.GetComponentInParent<GazeAnimation>() == this)
             {
                 contador += Time.deltaTime;
 
                 if (contador >= tempoDeOlhar)
                 {
-                    Debug.Log("GAZE COMPLETO ANIMAÇÃO ATIVADA");
-                    animator.SetTrigger("PlayAnim");
-                    jaAtivou = true;
+                    if (!jaAtivou)
+                    {
+                        animator.SetTrigger("PlayAnim");
+                        jaAtivou = true;
+                        contador = 0;
+                    }
+                    else
+                    {
+                        animator.SetTrigger("BaixarMao");
+                        jaAtivou = false;
+                    }
                 }
             }
             else
             {
-                contador = 0f;
+                contador = Mathf.Max(contador - Time.deltaTime, 0f);
             }
         }
         else
         {
-            contador = 0f;
+            contador = Mathf.Max(contador - Time.deltaTime, 0f);
         }
     }
 }

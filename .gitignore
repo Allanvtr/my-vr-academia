@@ -56,3 +56,11 @@ backend/build/
 coverage/
 dist/
 build/
+
+Library/
+Temp/
+Obj/
+Build/
+Logs/
+UserSettings/
+.vs/

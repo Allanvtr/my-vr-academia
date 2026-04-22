@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MouseLook : MonoBehaviour
+public class CameraLook : MonoBehaviour
 {
     public float sensibilidade = 200f;
 
@@ -17,6 +17,8 @@ public class MouseLook : MonoBehaviour
     {
         float mouseX = Input.GetAxis("Mouse X") * sensibilidade * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * sensibilidade * Time.deltaTime;
+
+        Debug.Log("MouseX: " + mouseX + " | MouseY: " + mouseY);
 
         rotX -= mouseY;
         rotY += mouseX;
