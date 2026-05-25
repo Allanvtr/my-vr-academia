@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  background-color: #F4F7F7; 
+  background-color: ${({ theme }) => theme.colors.background};
   width: 94%; 
   border-radius: 10px; 
   flex-direction: row;
@@ -22,10 +22,11 @@ export const TextContainer = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-size: 20px; 
-  font-weight: bold;
+  font-size: 18px; 
+  font-family: ${({ theme }) => theme.fonts.bold};
 `;
 
 export const Description = styled.Text`
   margin-right: 5px;
+  font-family: ${({ theme }) => theme.fonts.regular};
 `;

@@ -7,43 +7,43 @@ import Logo from '../../components/Logo';
 const data = [
   {
     title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
   },
   {
     title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
   },
   {
     title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
   },
   {
     title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
   },
   {
     title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
   },
   {
     title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
   },
   {
     title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
   },
   {
     title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
   },
   {
     title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
   },
   {
     title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
   },
 ];
 
@@ -52,14 +52,12 @@ export default function Home() {
     <S.Container>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        // Logo = 0, HelloText = 1, StickyHeaderContainer = 2
         stickyHeaderIndices={[2]} 
       >
         <Logo />
 
         <S.HelloText>Olá, Allan</S.HelloText>
 
-        {/* --- CABEÇALHO FIXO (Índice 2) --- */}
         <S.StickyHeaderContainer>
           <S.Header>
             <S.GalleryTitle>Galeria</S.GalleryTitle>
@@ -71,11 +69,10 @@ export default function Home() {
           </S.Header>
         </S.StickyHeaderContainer>
 
-        {/* --- LISTA DE CARDS (Índice 3) --- */}
         <S.GalleryItemsContainer>
           {data.map((item, index) => (
             <GalleryCard
-              key={index} // Adicionado 'key' para evitar avisos (warnings) do React
+              key={index}
               title={item.title}
               description={item.description}
             />

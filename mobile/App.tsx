@@ -1,12 +1,18 @@
 import { NativeModules, Button, View, StyleSheet } from 'react-native';
 import Home from './src/screens/Home';
+import { ThemeProvider } from 'styled-components/native';
+import theme from './src/theme';
+import BottomBar from './src/components/BottomBar'
 
 // const { UnityLauncher } = NativeModules;
 
 
 export default function App() {
   return (
-    <Home />
+    <ThemeProvider theme={theme}>
+      <Home />
+      <BottomBar />
+    </ThemeProvider>
 
 
 
