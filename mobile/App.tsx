@@ -1,5 +1,5 @@
 import { NativeModules, Button, View, StyleSheet } from 'react-native';
-import Home from './src/screens/home';
+import Home from './src/screens/Home';
 
 // const { UnityLauncher } = NativeModules;
 

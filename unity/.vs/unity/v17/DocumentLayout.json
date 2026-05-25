@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Allan\\Desktop\\Workspace\\ic\\MyVRAcademia\\unity\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C3DA89E1-70C6-7D6C-993E-C8F831D35880}|Assembly-CSharp.csproj|c:\\users\\allan\\desktop\\workspace\\ic\\myvracademia\\unity\\assets\\scripts\\gazeanimation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3DA89E1-70C6-7D6C-993E-C8F831D35880}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gazeanimation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C3DA89E1-70C6-7D6C-993E-C8F831D35880}|Assembly-CSharp.csproj|c:\\users\\allan\\desktop\\workspace\\ic\\myvracademia\\unity\\assets\\scripts\\mouselook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C3DA89E1-70C6-7D6C-993E-C8F831D35880}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mouselook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -31,19 +35,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "GazeAnimation.cs",
+              "DocumentMoniker": "C:\\Users\\Allan\\Desktop\\Workspace\\ic\\MyVRAcademia\\unity\\Assets\\Scripts\\GazeAnimation.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GazeAnimation.cs",
+              "ToolTip": "C:\\Users\\Allan\\Desktop\\Workspace\\ic\\MyVRAcademia\\unity\\Assets\\Scripts\\GazeAnimation.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GazeAnimation.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwCMAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T17:35:38.317Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MouseLook.cs",
               "DocumentMoniker": "C:\\Users\\Allan\\Desktop\\Workspace\\ic\\MyVRAcademia\\unity\\Assets\\Scripts\\MouseLook.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MouseLook.cs",
               "ToolTip": "C:\\Users\\Allan\\Desktop\\Workspace\\ic\\MyVRAcademia\\unity\\Assets\\Scripts\\MouseLook.cs",
               "RelativeToolTip": "Assets\\Scripts\\MouseLook.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-22T17:08:44.285Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Cronometro.cs",
               "DocumentMoniker": "C:\\Users\\Allan\\Desktop\\Workspace\\ic\\MyVRAcademia\\unity\\Assets\\Scripts\\Cronometro.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Cronometro.cs",
@@ -55,7 +72,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Users\\Allan\\Desktop\\Workspace\\ic\\MyVRAcademia\\unity\\Assets\\Scripts\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
@@ -67,7 +84,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "CharacterManager.cs",
               "DocumentMoniker": "C:\\Users\\Allan\\Desktop\\Workspace\\ic\\MyVRAcademia\\unity\\Assets\\Scripts\\CharacterManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\CharacterManager.cs",
