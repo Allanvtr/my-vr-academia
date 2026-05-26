@@ -15,7 +15,7 @@ export const HelloText = styled.Text`
   font-size: 64px;
   margin-top: 10px;
   margin-bottom: 30px;
-  font-family: ${({ theme }) => theme.fonts.semiBold};
+  font-family: ${({ theme }) => theme.fonts.medium};
   align-self: center;
   text-align: center;
 `;

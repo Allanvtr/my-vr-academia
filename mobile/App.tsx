@@ -11,7 +11,7 @@ import BottomBar from './src/components/BottomBar'
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Home />
+      <MetricsPage />
       <BottomBar />
     </ThemeProvider>
 
