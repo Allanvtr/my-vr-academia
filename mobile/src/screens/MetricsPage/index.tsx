@@ -3,6 +3,7 @@ import { Slider } from '@miblanchard/react-native-slider'; // Importação corri
 import { useState } from 'react';
 import styled, { useTheme } from 'styled-components/native';
 import MetricButton from "../../components/MetricButton";
+import Button from "../../components/Button"
 
 export const Container = styled.View`
   flex: 1;
@@ -47,6 +48,8 @@ const FloatingNumber = styled.Text<{ percentage: number }>`
     transform: translateX(-15px); 
 `;
 
+
+
 export default function MetricsPage() {
     const theme = useTheme();
     
@@ -87,9 +90,8 @@ export default function MetricsPage() {
                 </SliderStyle>
                 
             </SliderContainer>
-            <MetricButton
-                icon="help-outline"
-                metric="teste"
+            <Button
+                name = "teste"
             />
         </Container>
     );
