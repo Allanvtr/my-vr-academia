@@ -10,6 +10,9 @@ const Container = styled.View`
     justify-content: space-between;
     padding-left: 30px;
     padding-right: 30px;
+    
+    position: absolute;
+    bottom: 0;
 `;
 
 const IconSize = 40;

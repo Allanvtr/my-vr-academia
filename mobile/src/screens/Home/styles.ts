@@ -15,7 +15,7 @@ export const HelloText = styled.Text`
   font-size: 64px;
   margin-top: 10px;
   margin-bottom: 30px;
-  font-family: ${({ theme }) => theme.fonts.semiBold};
+  font-family: ${({ theme }) => theme.fonts.medium};
   align-self: center;
   text-align: center;
 `;
@@ -34,7 +34,7 @@ export const GalleryItemsContainer = styled.View`
   width: 100%;
   flex: 1;
   align-items: center;
-  padding-bottom: 10px;
+  padding-bottom: 90px;
 `;
 
 export const Header = styled.View`
