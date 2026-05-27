@@ -4,7 +4,7 @@ type Props = {
     name: string,
 }
 
-export default function Button({ name }: Props){
+export default function CustomButton({ name }: Props){
     return(
         <S.Container>
             <S.ButtonText>

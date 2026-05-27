@@ -3,8 +3,9 @@ import { Slider } from '@miblanchard/react-native-slider';
 import { useState } from 'react';
 import { useTheme } from 'styled-components/native';
 import MetricButton from "../../components/MetricButton";
-import Button from "../../components/Button"
+import CustomButton from "../../components/CustomButton"
 import * as S from './styles'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const metrics = [
     {metric: "Público", icon: "people-outline"},
@@ -26,7 +27,16 @@ export default function MetricsPage() {
 
     return (
         <S.Container>
-            <Logo/>
+            <S.TopContainer>
+                <S.BackButton>
+                    <Ionicons
+                        name="arrow-back-outline"
+                        size={41}
+                        color="black"
+                    />
+                </S.BackButton>
+                <Logo/>
+            </S.TopContainer>
             <S.MetricTitle>
                 {metric}
             </S.MetricTitle>
@@ -57,17 +67,16 @@ export default function MetricsPage() {
             <S.MetricsButtonsContainer>
                 {metrics.map((item) =>(
                     <MetricButton
+                        key={item.metric}
                         metric={item.metric}
                         icon={item.icon}
                         onPress={() => setMetric(item.metric)}
                     />
                 ))}
             </S.MetricsButtonsContainer>
-            <S.SubmitButtonContainer>
-                <Button
-                    name="Avançar"
-                />
-            </S.SubmitButtonContainer>
+            <CustomButton
+                name="Avançar"
+            />
             
         </S.Container>
     );

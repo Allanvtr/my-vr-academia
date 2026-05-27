@@ -1,6 +1,7 @@
 import { NativeModules, Button, View, StyleSheet } from 'react-native';
 import Home from './src/screens/Home';
 import MetricsPage from './src/screens/MetricsPage';
+import ContentPage from './src/screens/ContentPage';
 import { ThemeProvider } from 'styled-components/native';
 import theme from './src/theme';
 import BottomBar from './src/components/BottomBar'
@@ -11,7 +12,7 @@ import BottomBar from './src/components/BottomBar'
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <MetricsPage />
+      <ContentPage/>
       <BottomBar />
     </ThemeProvider>
 
