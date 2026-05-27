@@ -4,11 +4,14 @@ import * as S from './styles';
 type Props = {
   icon: string;
   metric: string;
+  onPress: () => void;
 };
 
-export default function MetricButton({ icon, metric }: Props) {
+export default function MetricButton({ icon, metric, onPress }: Props) {
     return(
-        <S.Container>
+        <S.Container
+            onPress={onPress}
+        >
             <Ionicons
                 name={icon}
                 size={41}
