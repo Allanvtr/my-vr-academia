@@ -1,5 +1,18 @@
 import styled from "styled-components/native";
 
+export const TopContainer = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+`;
+
+export const BackButton = styled.TouchableOpacity`
+    position: absolute;
+    left: 10px;
+    margin-top: 45px;
+`;
+
 export const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.background};
