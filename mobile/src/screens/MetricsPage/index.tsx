@@ -3,7 +3,7 @@ import { Slider } from '@miblanchard/react-native-slider';
 import { useState } from 'react';
 import { useTheme } from 'styled-components/native';
 import MetricButton from "../../components/MetricButton";
-import Button from "../../components/Button"
+import CustomButton from "../../components/CustomButton"
 import * as S from './styles'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -74,11 +74,9 @@ export default function MetricsPage() {
                     />
                 ))}
             </S.MetricsButtonsContainer>
-            <S.SubmitButtonContainer>
-                <Button
-                    name="Avançar"
-                />
-            </S.SubmitButtonContainer>
+            <CustomButton
+                name="Avançar"
+            />
             
         </S.Container>
     );

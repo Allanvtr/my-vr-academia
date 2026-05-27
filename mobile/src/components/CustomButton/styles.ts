@@ -7,6 +7,8 @@ export const Container = styled.TouchableOpacity`
     background-color: ${({ theme }) => theme.colors.secondary};
     align-items: center;
     justify-content: center;
+    align-self: center;
+    margin-top: 40px;
 `;
 
 export const ButtonText = styled.Text`

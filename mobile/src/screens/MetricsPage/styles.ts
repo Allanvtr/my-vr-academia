@@ -65,9 +65,3 @@ export const MetricsButtonsContainer = styled.View`
     row-gap: 20px;
     margin-top: 30px;
 `;
-
-export const SubmitButtonContainer = styled.View`
-    width: 100%;
-    align-items: center;
-    margin-top: 50px;
-`;
