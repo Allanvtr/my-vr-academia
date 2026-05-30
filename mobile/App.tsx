@@ -5,6 +5,7 @@ import ContentPage from './src/screens/ContentPage';
 import { ThemeProvider } from 'styled-components/native';
 import theme from './src/theme';
 import BottomBar from './src/components/BottomBar'
+import Routes from './src/navigation';
 
 // const { UnityLauncher } = NativeModules;
 
@@ -12,8 +13,7 @@ import BottomBar from './src/components/BottomBar'
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <ContentPage/>
-      <BottomBar />
+          <Routes/>
     </ThemeProvider>
 
 
