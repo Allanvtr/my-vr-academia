@@ -1,14 +1,13 @@
-import styled from "styled-components/native";
 import Logo from "../../components/Logo";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as S from './styles'
-import { useState } from 'react';
-import { pick } from '@react-native-documents/picker';
 import CustomButton from "../../components/CustomButton";
 import MetricCard from "../../components/MetricCard"
-import Icon from "react-native-vector-icons/Ionicons";
+import { useAppNavigation } from "../../hooks/useAppNavigation";
+import BottomBar from "../../components/BottomBar";
 
 export default function ContentPage(){
+    const navigation = useAppNavigation();
 
     const metrics = [
         {metric: "5", icon: "people-outline"},
@@ -22,7 +21,9 @@ export default function ContentPage(){
         <S.Container>
 
             <S.TopContainer>
-                <S.BackButton>
+                <S.BackButton
+                    onPress={navigation.goBack}
+                >
                     <Ionicons
                         name="arrow-back-outline"
                         size={41}
@@ -66,7 +67,9 @@ export default function ContentPage(){
             </S.AbstractContainer>
             <CustomButton
                 name="Iniciar"
+                onClick={() => {}}
             />
+            <BottomBar/>
         </S.Container>
     );
 }

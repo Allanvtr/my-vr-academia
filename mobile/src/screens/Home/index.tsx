@@ -3,6 +3,8 @@ import { ScrollView } from 'react-native';
 import { GalleryCard } from '../../components/GalleryCard';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Logo from '../../components/Logo';
+import { useAppNavigation } from '../../hooks/useAppNavigation';
+import BottomBar from '../../components/BottomBar'
 
 const data = [
   {
@@ -48,6 +50,8 @@ const data = [
 ];
 
 export default function Home() {
+  const navigation = useAppNavigation();
+
   return (
     <S.Container>
       <ScrollView
@@ -75,11 +79,13 @@ export default function Home() {
               key={index}
               title={item.title}
               description={item.description}
+              onClick = {() => navigation.navigate('MetricsPage')}
             />
           ))}
         </S.GalleryItemsContainer>
 
       </ScrollView>
+      <BottomBar/>
     </S.Container>
   );
 }

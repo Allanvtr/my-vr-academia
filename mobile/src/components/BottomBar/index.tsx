@@ -1,5 +1,7 @@
 import styled from 'styled-components/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useAppNavigation } from '../../hooks/useAppNavigation';
+import { TouchableOpacity } from 'react-native';
 
 const Container = styled.View`
     height: 84px;
@@ -19,29 +21,48 @@ const IconSize = 40;
 const IconColor = "white"
 
 export default function BottomBar() {
+    const navigation = useAppNavigation();
+
     return(
         <Container>
-            <Ionicons
-                name="home-outline"
-                size={IconSize}
-                color={IconColor}
-            />
-            <Ionicons
-                name="time-outline"
-                size={IconSize}
-                color={IconColor}
-            />
-            <Ionicons
-                name="star-outline"
-                size={IconSize}
-                color={IconColor}
-            />
-            <Ionicons
-                name="settings-outline"
-                size={IconSize}
-                color={IconColor}
-            />
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Home')}
+            >
+                <Ionicons
+                    name="home-outline"
+                    size={IconSize}
+                    color={IconColor}
+                />
+            </TouchableOpacity>
+            
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Home')}
+            >
+                <Ionicons
+                    name="time-outline"
+                    size={IconSize}
+                    color={IconColor}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Home')}
+            >
+                <Ionicons
+                    name="star-outline"
+                    size={IconSize}
+                    color={IconColor}
+                />
+            </TouchableOpacity>
 
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Home')}
+            >
+                <Ionicons
+                    name="settings-outline"
+                    size={IconSize}
+                    color={IconColor}
+                />
+            </TouchableOpacity>
         </Container>
     );
 }
