@@ -1,12 +1,18 @@
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as S from './styles'
+import { formatTime } from '../../untils/formatTime'
+import { metrics } from '../../constants/metrics';
 
 type Props = {
     icon: string,
-    metric: string,
+    metric: number,
 }
 
 export default function MetricCard({ icon, metric }: Props){
+    const tempoIcon = metrics.find(
+        item => item.metric === 'Tempo'
+    )?.icon;
+    
     return(
         <S.Container>
             <Ionicons
@@ -18,7 +24,10 @@ export default function MetricCard({ icon, metric }: Props){
                 numberOfLines={1} 
                 adjustsFontSizeToFit={true}
             >
-                {metric}
+                {icon === tempoIcon 
+                    ? formatTime(metric)
+                    : metric
+                }
             </S.MetricValue>
         </S.Container>
     );

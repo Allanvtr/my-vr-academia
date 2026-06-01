@@ -4,25 +4,29 @@ import * as S from './styles';
 type Props = {
   icon: string;
   metric: string;
+  selected: boolean;
   onPress: () => void;
 };
 
-export default function MetricButton({ icon, metric, onPress }: Props) {
-    return(
-        <S.Container
-            onPress={onPress}
-        >
-            <Ionicons
-                name={icon}
-                size={41}
-                color="black"
-            />
-            <S.ButtonText 
-                numberOfLines={1} 
-                adjustsFontSizeToFit={true}
-            >
-                {metric}
-            </S.ButtonText>
-        </S.Container>
-    );
+export default function MetricButton({icon, metric, selected, onPress}: Props) {
+  return (
+    <S.Container
+      selected={selected}
+      onPress={onPress}
+    >
+      <Ionicons
+        name={icon}
+        size={41}
+        color={selected ? 'white' : 'black'}
+      />
+
+      <S.ButtonText
+        selected={selected}
+        numberOfLines={1}
+        adjustsFontSizeToFit={true}
+      >
+        {metric}
+      </S.ButtonText>
+    </S.Container>
+  );
 }
