@@ -5,17 +5,22 @@ import CustomButton from "../../components/CustomButton";
 import MetricCard from "../../components/MetricCard"
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 import BottomBar from "../../components/BottomBar";
+import { RootStackParamList } from '../../navigation';
+import { RouteProp } from '@react-navigation/native';
+import { metrics } from '../../constants/metrics';
 
-export default function ContentPage(){
+type ContentPageRouteProp = RouteProp<
+  RootStackParamList,
+  'ContentPage'
+>;
+
+type Props = {
+  route: ContentPageRouteProp;
+};
+
+export default function ContentPage({ route }: Props){
     const navigation = useAppNavigation();
-
-    const metrics = [
-        {metric: "5", icon: "people-outline"},
-        {metric: "9", icon: "volume-medium-outline"},
-        {metric: "5", icon: "sunny-outline"},
-        {metric: "13", icon: "help-circle-outline"},
-        {metric: "5:00", icon: "hourglass-outline"},
-    ]
+    const { title, metricValues }= route.params;
 
     return(
         <S.Container>
@@ -60,14 +65,14 @@ export default function ContentPage(){
                 {metrics.map((item, index) => (
                     <MetricCard
                         key={index}
-                        metric={item.metric}
+                        metric={metricValues[item.metric]}
                         icon={item.icon}
                     />
                 ))}
             </S.AbstractContainer>
             <CustomButton
                 name="Iniciar"
-                onClick={() => {}}
+                onClick={() => {console.log(title, metricValues)}}
             />
             <BottomBar/>
         </S.Container>
