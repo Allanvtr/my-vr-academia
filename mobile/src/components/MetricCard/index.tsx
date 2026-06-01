@@ -1,6 +1,6 @@
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as S from './styles'
-import { formatTime } from '../../untils/formatTime'
+import { formatTime } from '../../utils/formatTime'
 import { metrics } from '../../constants/metrics';
 
 type Props = {

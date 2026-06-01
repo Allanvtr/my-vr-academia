@@ -12,7 +12,7 @@ import { RootStackParamList } from '../../navigation';
 import { RouteProp } from '@react-navigation/native';
 import { metrics } from '../../constants/metrics';
 import { MetricType } from '../../types/metrics'
-import { formatTime } from '../../untils/formatTime'
+import { formatTime } from '../../utils/formatTime'
 
 type MetricsPageRouteProp = RouteProp<
   RootStackParamList,
