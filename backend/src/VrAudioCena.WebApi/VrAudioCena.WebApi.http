@@ -1,0 +1,6 @@
+@VrAudioCena.WebApi_HostAddress = http://localhost:5116
+
+GET {{VrAudioCena.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
