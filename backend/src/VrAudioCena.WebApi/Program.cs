@@ -1,4 +1,5 @@
 using VrAudioCena.WebApi.Infrastructure.Background;
+using VrAudioCena.WebApi.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,7 @@ builder.Services.AddSignalR();
 builder.Services.AddSingleton<EventQueue>();
 builder.Services.AddHostedService<VrBackgroundWorker>();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+builder.Services.AddSingleton<IOperationRepository, MemoryOperationRepository>();
 
 var app = builder.Build();
 
