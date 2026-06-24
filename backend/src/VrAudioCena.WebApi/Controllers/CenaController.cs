@@ -6,17 +6,26 @@ namespace VrAudioCena.WebApi.Controllers
     [Route("api/[controller]")]
     public class CenaController : ControllerBase
     {
-        private readonly ILogger<CenaController> _logger;
-
-        public CenaController(ILogger<CenaController> logger)
-        {
-            _logger = logger;
-        }
-
         [HttpGet]
         public IActionResult Get()
         {
             return Ok("Hello from CenaController!");
+        }
+
+        [HttpPost("upload")]
+        public IActionResult UploadPdf (IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+            {
+                return BadRequest("Nenhum arquivo foi enviado.");
+            }
+
+            if (Path.GetExtension(file.FileName).ToLower() != ".pdf")
+            {
+                return BadRequest("Apenas arquivos PDF são permitidos.");
+            }
+
+            return Ok("Arquivo Enviado com sucesso");
         }
     }   
 }

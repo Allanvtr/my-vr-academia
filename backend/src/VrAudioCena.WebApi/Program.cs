@@ -1,3 +1,5 @@
+using VrAudioCena.WebApi.Infrastructure.Background;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // 1. DEFINIR A POLÍTICA DE CORS (Antes do builder.Build())
@@ -13,7 +15,11 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddControllers();
-builder.Services.AddSignalR(); // Seu SignalR
+builder.Services.AddSignalR();
+
+builder.Services.AddSingleton<EventQueue>();
+builder.Services.AddHostedService<VrBackgroundWorker>();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
 var app = builder.Build();
 
