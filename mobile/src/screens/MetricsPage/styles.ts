@@ -49,10 +49,11 @@ export const FloatingNumber = styled.Text<{ percentage: number }>`
     font-family: ${({ theme }) => theme.fonts.semiBold};
     color: #000000;
     text-align: center;
-    width: 30px;
-    
+
+    width: 55px;
+
     left: ${({ percentage }) => percentage}%;
-    transform: translateX(-15px); 
+    transform: translateX(-27px);
 `;
 
 export const MetricsButtonsContainer = styled.View`

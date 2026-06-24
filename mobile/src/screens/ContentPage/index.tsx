@@ -5,17 +5,45 @@ import CustomButton from "../../components/CustomButton";
 import MetricCard from "../../components/MetricCard"
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 import BottomBar from "../../components/BottomBar";
+import { RootStackParamList } from '../../navigation';
+import { RouteProp } from '@react-navigation/native';
+import { metrics } from '../../constants/metrics';
+import { pick } from '@react-native-documents/picker';
+import { useState } from 'react';
+import { DocumentPickerResponse } from '@react-native-documents/picker';
 
-export default function ContentPage(){
+type ContentPageRouteProp = RouteProp<
+  RootStackParamList,
+  'ContentPage'
+>;
+
+type Props = {
+  route: ContentPageRouteProp;
+};
+
+export default function ContentPage({ route }: Props){
     const navigation = useAppNavigation();
+    const { title, metricValues }= route.params;
+    const [selectedFile, setSelectedFile] = useState<DocumentPickerResponse | null>(null);
 
-    const metrics = [
-        {metric: "5", icon: "people-outline"},
-        {metric: "9", icon: "volume-medium-outline"},
-        {metric: "5", icon: "sunny-outline"},
-        {metric: "13", icon: "help-circle-outline"},
-        {metric: "5:00", icon: "hourglass-outline"},
-    ]
+    const pickFile = async () => {
+        try {
+            const [file] = await pick({
+                type: [
+                    'application/pdf',
+                    'application/vnd.ms-powerpoint',
+                    'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+                ],
+            });
+
+            setSelectedFile(file);
+
+            console.log(file);
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return(
         <S.Container>
@@ -47,11 +75,14 @@ export default function ContentPage(){
             <S.FileDescription>
                 Insira a sua apresentação (slides). Ela vai te auxiliar bla bla bla e gerar perguntas.
             </S.FileDescription>
-            <S.FileButton>
-                <S.FileButtonText>
-                    Selecionar Arquivo
-                </S.FileButtonText>
-            </S.FileButton>
+                <S.FileButton onPress={pickFile}>
+                    <S.FileButtonText>
+                        {selectedFile
+                            ? selectedFile.name
+                            : "Selecionar Arquivo"}
+                    </S.FileButtonText>
+                </S.FileButton>
+
             <S.SectionTitle>
                 Resumo
             </S.SectionTitle>
@@ -60,14 +91,14 @@ export default function ContentPage(){
                 {metrics.map((item, index) => (
                     <MetricCard
                         key={index}
-                        metric={item.metric}
+                        metric={metricValues[item.metric]}
                         icon={item.icon}
                     />
                 ))}
             </S.AbstractContainer>
             <CustomButton
                 name="Iniciar"
-                onClick={() => {}}
+                onClick={() => {console.log(title, metricValues)}}
             />
             <BottomBar/>
         </S.Container>

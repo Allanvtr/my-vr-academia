@@ -6,11 +6,20 @@ import Home from '../screens/Home';
 import ContentPage from '../screens/ContentPage';
 import MetricsPage from '../screens/MetricsPage';
 
-//aque que é configurado os parâmetros das rotas
+type metricType = 'Público' | 'Ruído' | 'Brilho' | 'Perguntas' | 'Tempo'
+
+
 export type RootStackParamList = {
   Home: undefined;
-  ContentPage: undefined;
-  MetricsPage: undefined;
+
+  MetricsPage: {
+    title: string;
+  };
+
+  ContentPage: {
+    title: string,
+    metricValues: Record<metricType, number>;
+  }
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

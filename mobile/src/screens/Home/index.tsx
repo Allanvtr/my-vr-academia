@@ -5,8 +5,14 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Logo from '../../components/Logo';
 import { useAppNavigation } from '../../hooks/useAppNavigation';
 import BottomBar from '../../components/BottomBar'
+import { scenes, SceneName } from '../../constants/scenes';
 
-const data = [
+type SceneData = {
+  title: SceneName;
+  description: string;
+};
+
+const data: SceneData[] = [
   {
     title: 'Sala de Aula',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
@@ -79,7 +85,9 @@ export default function Home() {
               key={index}
               title={item.title}
               description={item.description}
-              onClick = {() => navigation.navigate('MetricsPage')}
+              onClick = {() => navigation.navigate('MetricsPage', {
+                title: scenes[item.title].id
+              })}
             />
           ))}
         </S.GalleryItemsContainer>
