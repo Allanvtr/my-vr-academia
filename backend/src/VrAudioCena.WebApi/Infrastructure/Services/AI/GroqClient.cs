@@ -7,12 +7,13 @@ namespace VrAudioCena.WebApi.Infrastructure.Services.AI
     public class GroqClient : IAIService
     {
         private readonly HttpClient _httpClient;
+        private readonly ILogger<GroqClient> _logger;
 
-        public GroqClient(HttpClient httpClient)
+        public GroqClient(HttpClient httpClient, ILogger<GroqClient> logger)
         {
             _httpClient = httpClient;
+            _logger = logger;
         }
-
         public async Task<List<string>> ProcessPresentationAsync(string presentation)
         {
             var apiKey = Environment.GetEnvironmentVariable("GROQ_API_KEY");
@@ -29,7 +30,31 @@ namespace VrAudioCena.WebApi.Infrastructure.Services.AI
                     new
                     {
                         role = "user",
-                        content = presentation
+                        content = $@"
+                            Você é um membro da plateia assistindo a uma apresentação acadêmica.
+
+                            Com base exclusivamente na apresentação abaixo, gere exatamente 3 perguntas.
+
+                            Regras:
+                            - Gere exatamente 3 perguntas.
+                            - As perguntas devem ser curtas, claras e objetivas.
+                            - Não inclua respostas, explicações ou comentários.
+                            - Não utilize numeração ou marcadores.
+                            - Se alguma informação não estiver presente na apresentação, não invente fatos.
+
+                            Retorne apenas um JSON válido, sem markdown e sem texto adicional, no seguinte formato:
+
+                            {{
+                            ""questions"": [
+                                ""Pergunta 1"",
+                                ""Pergunta 2"",
+                                ""Pergunta 3""
+                            ]
+                            }}
+
+                            Apresentação:
+
+                            {presentation}"
                     }
                 }
             };
@@ -52,8 +77,16 @@ namespace VrAudioCena.WebApi.Infrastructure.Services.AI
                     .GetProperty("message")
                     .GetProperty("content")
                     .GetString();
+            
+            using var questionsJson = JsonDocument.Parse(mensagem!);
 
-            return new List<string> { mensagem ?? string.Empty };
+            var questions = questionsJson.RootElement
+                .GetProperty("questions")
+                .EnumerateArray()
+                .Select(q => q.GetString()!)
+                .ToList();
+            
+            return questions;
         }
 
     }

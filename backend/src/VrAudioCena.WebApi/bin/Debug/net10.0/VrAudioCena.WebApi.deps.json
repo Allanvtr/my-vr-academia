@@ -8,11 +8,24 @@
     ".NETCoreApp,Version=v10.0": {
       "VrAudioCena.WebApi/1.0.0": {
         "dependencies": {
+          "DotNetEnv": "3.2.0",
           "MediatR": "14.1.0",
-          "Microsoft.AspNetCore.OpenApi": "10.0.8"
+          "Microsoft.AspNetCore.OpenApi": "10.0.8",
+          "PdfPig": "0.1.15"
         },
         "runtime": {
           "VrAudioCena.WebApi.dll": {}
+        }
+      },
+      "DotNetEnv/3.2.0": {
+        "dependencies": {
+          "Superpower": "3.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/DotNetEnv.dll": {
+            "assemblyVersion": "3.2.0.0",
+            "fileVersion": "3.2.0.0"
+          }
         }
       },
       "MediatR/14.1.0": {
@@ -94,6 +107,46 @@
             "fileVersion": "2.0.0.0"
           }
         }
+      },
+      "PdfPig/0.1.15": {
+        "runtime": {
+          "lib/net8.0/UglyToad.PdfPig.Core.dll": {
+            "assemblyVersion": "0.1.15.0",
+            "fileVersion": "0.1.15.0"
+          },
+          "lib/net8.0/UglyToad.PdfPig.DocumentLayoutAnalysis.dll": {
+            "assemblyVersion": "0.1.15.0",
+            "fileVersion": "0.1.15.0"
+          },
+          "lib/net8.0/UglyToad.PdfPig.Fonts.dll": {
+            "assemblyVersion": "0.1.15.0",
+            "fileVersion": "0.1.15.0"
+          },
+          "lib/net8.0/UglyToad.PdfPig.Package.dll": {
+            "assemblyVersion": "0.1.15.0",
+            "fileVersion": "0.1.15.0"
+          },
+          "lib/net8.0/UglyToad.PdfPig.Tokenization.dll": {
+            "assemblyVersion": "0.1.15.0",
+            "fileVersion": "0.1.15.0"
+          },
+          "lib/net8.0/UglyToad.PdfPig.Tokens.dll": {
+            "assemblyVersion": "0.1.15.0",
+            "fileVersion": "0.1.15.0"
+          },
+          "lib/net8.0/UglyToad.PdfPig.dll": {
+            "assemblyVersion": "0.1.15.0",
+            "fileVersion": "0.1.15.0"
+          }
+        }
+      },
+      "Superpower/3.0.0": {
+        "runtime": {
+          "lib/net5.0/Superpower.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        }
       }
     }
   },
@@ -102,6 +155,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "DotNetEnv/3.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2q+PD+aJcRW9QuRcIv4F8WbvEDxI6cwxzZJec2i45cBY4cAKCAoW4ZPkApJ7H82wr6Yfmxx/0kb1nLnRmZrGZA==",
+      "path": "dotnetenv/3.2.0",
+      "hashPath": "dotnetenv.3.2.0.nupkg.sha512"
     },
     "MediatR/14.1.0": {
       "type": "package",
@@ -158,6 +218,20 @@
       "sha512": "sha512-GGYLfzV/G/ct80OZ45JxnWP7NvMX1BCugn/lX7TH5o0lcVaviavsLMTxmFV2AybXWjbi3h6FF1vgZiTK6PXndw==",
       "path": "microsoft.openapi/2.0.0",
       "hashPath": "microsoft.openapi.2.0.0.nupkg.sha512"
+    },
+    "PdfPig/0.1.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Bf0NO4o2ZSVnemMyj21KDU1sfSgmamFC0pD4aAv19CDNXQsoO1Z6O99gNqpiK/XWWZ5d5i7JkQoT7PUBxEPz5g==",
+      "path": "pdfpig/0.1.15",
+      "hashPath": "pdfpig.0.1.15.nupkg.sha512"
+    },
+    "Superpower/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bjKbAYWePooCAvPxQq+3KnmcLfRggMyRoXmtBMlmCG71bdwBHrO6rmRJ2DRIodg5aztNcxeZXBUVWT+H+MZUhw==",
+      "path": "superpower/3.0.0",
+      "hashPath": "superpower.3.0.0.nupkg.sha512"
     }
   }
 }

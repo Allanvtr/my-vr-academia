@@ -17,6 +17,12 @@ namespace VrAudioCena.WebApi.Core.Handlers
         
         public Task Handle(StartAiProcessingEvent notification, CancellationToken cancellationToken)
         {
+            _logger.LogInformation($"Received StartAiProcessingEvent with text.");
+            var mensagem = _aiService.ProcessPresentationAsync(notification.Text);
+            for (int i = 0; i < mensagem.Result.Count; i++)
+            {
+                _logger.LogInformation($"Question {i + 1}: {mensagem.Result[i]}");
+            }
             return Task.CompletedTask;
         }
     }   

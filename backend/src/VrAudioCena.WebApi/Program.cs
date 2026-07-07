@@ -1,5 +1,7 @@
 using VrAudioCena.WebApi.Infrastructure.Background;
-using VrAudioCena.WebApi.Persistence;
+using VrAudioCena.WebApi.Infrastructure.Persistence;
+using VrAudioCena.WebApi.Infrastructure.Services.AI;
+using VrAudioCena.WebApi.Infrastructure.Services.DocumentProcessing;
 using DotNetEnv;
 
 Env.Load();
@@ -24,6 +26,8 @@ builder.Services.AddSingleton<EventQueue>();
 builder.Services.AddHostedService<VrBackgroundWorker>();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddSingleton<IOperationRepository, MemoryOperationRepository>();
+builder.Services.AddHttpClient<IAIService, GroqClient>();
+builder.Services.AddSingleton<IPdfTextExtractor, PdfTextExtractor>();
 
 var app = builder.Build();
 
