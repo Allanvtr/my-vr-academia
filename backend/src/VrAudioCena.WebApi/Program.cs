@@ -3,6 +3,7 @@ using VrAudioCena.WebApi.Infrastructure.Persistence;
 using VrAudioCena.WebApi.Infrastructure.Services.AI;
 using VrAudioCena.WebApi.Infrastructure.Services.DocumentProcessing;
 using DotNetEnv;
+using VrAudioCena.WebApi.Infrastructure.Services.Tts;
 
 Env.Load();
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +29,7 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Progr
 builder.Services.AddSingleton<IOperationRepository, MemoryOperationRepository>();
 builder.Services.AddHttpClient<IAIService, GroqClient>();
 builder.Services.AddSingleton<IPdfTextExtractor, PdfTextExtractor>();
+builder.Services.AddSingleton<ITextToSpeechService, AzureTtsClient>();
 
 var app = builder.Build();
 

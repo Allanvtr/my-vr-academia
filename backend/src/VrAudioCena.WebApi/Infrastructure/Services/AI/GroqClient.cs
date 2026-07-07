@@ -9,22 +9,29 @@ namespace VrAudioCena.WebApi.Infrastructure.Services.AI
         private readonly HttpClient _httpClient;
         private readonly ILogger<GroqClient> _logger;
 
-        public GroqClient(HttpClient httpClient, ILogger<GroqClient> logger)
+        private readonly string _apiKey;
+        private readonly string _model;
+
+        public GroqClient(
+            HttpClient httpClient,
+            ILogger<GroqClient> logger)
         {
             _httpClient = httpClient;
             _logger = logger;
+
+            _apiKey = Environment.GetEnvironmentVariable("GROQ_API_KEY")
+                ?? throw new Exception("GROQ_API_KEY not found");
+
+            _model = Environment.GetEnvironmentVariable("MODEL")
+                ?? throw new Exception("MODEL not found");
         }
+
+
         public async Task<List<string>> ProcessPresentationAsync(string presentation)
         {
-            var apiKey = Environment.GetEnvironmentVariable("GROQ_API_KEY");
-            var groqModel = Environment.GetEnvironmentVariable("MODEL");
-
-            _httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", apiKey);
-
             var request = new
             {
-                model = groqModel,
+                model = _model,
                 messages = new[]
                 {
                     new
@@ -59,35 +66,59 @@ namespace VrAudioCena.WebApi.Infrastructure.Services.AI
                 }
             };
 
+
             var json = JsonSerializer.Serialize(request);
 
-            var response = await _httpClient.PostAsync(
-                "https://api.groq.com/openai/v1/chat/completions",
-                new StringContent(json, Encoding.UTF8, "application/json"));
+
+            var httpRequest = new HttpRequestMessage(
+                HttpMethod.Post,
+                "https://api.groq.com/openai/v1/chat/completions"
+            );
+
+
+            httpRequest.Headers.Authorization =
+                new AuthenticationHeaderValue("Bearer", _apiKey);
+
+
+            httpRequest.Content = new StringContent(
+                json,
+                Encoding.UTF8,
+                "application/json"
+            );
+
+
+            var response = await _httpClient.SendAsync(httpRequest);
 
             response.EnsureSuccessStatusCode();
 
+
             var body = await response.Content.ReadAsStringAsync();
 
-            var jsonDoc = JsonDocument.Parse(body);
 
-            var mensagem =
-                jsonDoc.RootElement
-                    .GetProperty("choices")[0]
-                    .GetProperty("message")
-                    .GetProperty("content")
-                    .GetString();
-            
-            using var questionsJson = JsonDocument.Parse(mensagem!);
+            using var jsonDoc = JsonDocument.Parse(body);
 
-            var questions = questionsJson.RootElement
+
+            var message = jsonDoc.RootElement
+                .GetProperty("choices")[0]
+                .GetProperty("message")
+                .GetProperty("content")
+                .GetString();
+
+
+            if (string.IsNullOrWhiteSpace(message))
+            {
+                throw new Exception("AI returned an empty response");
+            }
+
+
+            using var questionsJson = JsonDocument.Parse(message);
+
+
+            return questionsJson.RootElement
                 .GetProperty("questions")
                 .EnumerateArray()
                 .Select(q => q.GetString()!)
                 .ToList();
-            
-            return questions;
         }
-
     }
 }

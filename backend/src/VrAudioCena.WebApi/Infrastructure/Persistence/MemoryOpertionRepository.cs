@@ -51,6 +51,16 @@ namespace VrAudioCena.WebApi.Infrastructure.Persistence
             }
         }
 
+        public List<string>? GetAiFeedback(Guid operationId)
+        {
+            if (_operations.TryGetValue(operationId, out var operation))
+            {
+                return operation.AiFeedback;
+            }
+            
+            return null;
+        }
+
 
         public void SaveAudio(Guid operationId, string urlAudio)
         {
