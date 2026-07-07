@@ -6,8 +6,7 @@ namespace VrAudioCena.WebApi.Infrastructure.Persistence
     public class MemoryOperationRepository : IOperationRepository
     {
         private readonly ConcurrentDictionary<Guid, OperationState> _operations = new();
-
-
+        
         public void Start(Guid operationId)
         {
             _operations[operationId] = new OperationState
@@ -34,6 +33,15 @@ namespace VrAudioCena.WebApi.Infrastructure.Persistence
             }
         }
 
+        public string? GetPresentationText(Guid operationId)
+        {
+            if (_operations.TryGetValue(operationId, out var operation))
+            {
+                return operation.PresentationText;
+            }
+
+            return null;
+        }
 
         public void SaveAiFeedback(Guid operationId, List<string> feedback)
         {

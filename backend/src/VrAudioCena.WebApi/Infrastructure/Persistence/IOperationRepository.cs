@@ -5,6 +5,7 @@ namespace VrAudioCena.WebApi.Infrastructure.Persistence
     public interface IOperationRepository
     {
         void Start(Guid operationId);
+        string? GetPresentationText(Guid operationId);
 
         void UpdateStatus(Guid operationId, OperationStatus status);
 

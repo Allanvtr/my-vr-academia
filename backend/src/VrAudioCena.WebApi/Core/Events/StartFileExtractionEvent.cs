@@ -4,11 +4,13 @@ namespace VrAudioCena.WebApi.Core.Events
 {
     public class StartFileExtractionEvent : INotification
     {
-        public required IFormFile File { get; init; }
+        public string FilePath { get; }
+        public Guid OperationId { get; init; }
 
-        public StartFileExtractionEvent (IFormFile file)
+        public StartFileExtractionEvent (string filePath, Guid operationId)
         {
-            File = file;
+            FilePath = filePath;
+            OperationId = operationId;
         }
     }
 }

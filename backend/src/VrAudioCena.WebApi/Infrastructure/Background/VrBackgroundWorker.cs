@@ -17,31 +17,45 @@ namespace VrAudioCena.WebApi.Infrastructure.Background
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation("Background iniciando, aguardando pedidos...");
+            _logger.LogInformation("Background worker started and is waiting for events.");
 
             while (!stoppingToken.IsCancellationRequested)
             {
                 try
                 {
+                    _logger.LogDebug("Waiting for the next event...");
+
                     var nextEvent = await _channel.ReadQueueAsync(stoppingToken);
 
-                    using (var scope = _serviceProvider.CreateScope())
-                    {
-                        var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+                    _logger.LogInformation(
+                        "Processing event {EventType}.",
+                        nextEvent.GetType().Name);
 
-                        await mediator.Publish(nextEvent, stoppingToken);
-                    }
+                    using var scope = _serviceProvider.CreateScope();
+
+                    var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+
+                    await mediator.Publish(nextEvent, stoppingToken);
+
+                    _logger.LogInformation(
+                        "Event {EventType} processed successfully.",
+                        nextEvent.GetType().Name);
                 }
                 catch (OperationCanceledException)
                 {
+                    _logger.LogInformation("Background worker is stopping.");
+
                     break;
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Erro crítico ao processar evento em background.");
+                    _logger.LogError(
+                        ex,
+                        "An unexpected error occurred while processing a background event.");
                 }
             }
-        }
 
+            _logger.LogInformation("Background worker stopped.");
+        }
     }
 }
