@@ -1,4 +1,4 @@
-namespace VrAudioCena.WebApi.Infrastructure.Services
+namespace VrAudioCena.WebApi.Infrastructure.Services.AI
 {
     public interface IAIService
     {

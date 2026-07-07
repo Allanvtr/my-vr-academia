@@ -16,14 +16,14 @@ namespace VrAudioCena.WebApi.Infrastructure.Services.AI
         public async Task<List<string>> ProcessPresentationAsync(string presentation)
         {
             var apiKey = Environment.GetEnvironmentVariable("GROQ_API_KEY");
-            var model = Environment.GetEnvironmentVariable("MODEL");
+            var groqModel = Environment.GetEnvironmentVariable("MODEL");
 
             _httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", apiKey);
 
             var request = new
             {
-                model = "llama-3.3-70b-versatile",
+                model = groqModel,
                 messages = new[]
                 {
                     new
