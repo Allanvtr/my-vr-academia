@@ -11,6 +11,7 @@ import { metrics } from '../../constants/metrics';
 import { pick } from '@react-native-documents/picker';
 import { useState } from 'react';
 import { DocumentPickerResponse } from '@react-native-documents/picker';
+import api from "../../services/api";
 
 type ContentPageRouteProp = RouteProp<
   RootStackParamList,
@@ -42,6 +43,18 @@ export default function ContentPage({ route }: Props){
 
         } catch (error) {
             console.log(error);
+        }
+    };
+
+    const testeGet = async () => {
+        try {
+            const response = await api.get('/Scene');
+            console.log('Response:', response.data);
+        } catch (error: any) {
+            console.log('message', error.message);
+            console.log('code', error.code);
+            console.log('response', error.response);
+            console.log('request', error.request);
         }
     };
 
@@ -98,7 +111,10 @@ export default function ContentPage({ route }: Props){
             </S.AbstractContainer>
             <CustomButton
                 name="Iniciar"
-                onClick={() => {console.log(title, metricValues)}}
+                onClick={() => {
+                    console.log(title, metricValues)
+                    testeGet()                
+                }}
             />
             <BottomBar/>
         </S.Container>

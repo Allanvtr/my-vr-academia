@@ -1,6 +1,8 @@
 using VrAudioCena.WebApi.Infrastructure.Background;
 using VrAudioCena.WebApi.Persistence;
+using DotNetEnv;
 
+Env.Load();
 var builder = WebApplication.CreateBuilder(args);
 
 // 1. DEFINIR A POLÍTICA DE CORS (Antes do builder.Build())
