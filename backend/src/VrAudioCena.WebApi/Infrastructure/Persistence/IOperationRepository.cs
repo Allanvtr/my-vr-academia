@@ -1,9 +1,22 @@
-namespace VrAudioCena.WebApi.Persistence
+using VrAudioCena.WebApi.Infrastructure.Persistence.Models;
+
+namespace VrAudioCena.WebApi.Infrastructure.Persistence
 {
     public interface IOperationRepository
     {
         void Start(Guid operationId);
-        void Finish(Guid operationId, string urlAudio);
-        (bool Exists, string? urlAudio) Status(Guid operationId);
+        string? GetPresentationText(Guid operationId);
+
+        void UpdateStatus(Guid operationId, OperationStatus status);
+
+        void SavePresentationText(Guid operationId, string text);
+
+        void SaveAiFeedback(Guid operationId, List<string> feedback);
+
+        void SaveAudio(Guid operationId, string urlAudio);
+
+        void Fail(Guid operationId, string errorMessage);
+
+        bool TryGet(Guid operationId, out OperationState? operation);
     }
 }

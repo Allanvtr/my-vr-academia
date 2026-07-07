@@ -4,7 +4,7 @@ using TMPro;
 public class Cronometro : MonoBehaviour
 {
     public TextMeshProUGUI texto;
-    private float tempo;
+    private float tempo = 120;
     private bool rodando = true;
 
     void Update()

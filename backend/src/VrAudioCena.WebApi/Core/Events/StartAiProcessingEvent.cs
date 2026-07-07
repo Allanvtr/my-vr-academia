@@ -4,11 +4,11 @@ namespace VrAudioCena.WebApi.Core.Events
 {
    public class StartAiProcessingEvent : INotification
     {
-        public string Text {get; init;}
+        public Guid OperationId {get; init;}
 
-        public StartAiProcessingEvent(string text)
+        public StartAiProcessingEvent(Guid operationId)
         {
-            Text = text;
+            OperationId = operationId;
         }
     } 
 }
