@@ -62,7 +62,7 @@ namespace VrAudioCena.WebApi.Infrastructure.Persistence
         }
 
 
-        public void SaveAudio(Guid operationId, string urlAudio)
+        public void SaveAudio(Guid operationId, List<string> urlAudio)
         {
             if (_operations.TryGetValue(operationId, out var operation))
             {

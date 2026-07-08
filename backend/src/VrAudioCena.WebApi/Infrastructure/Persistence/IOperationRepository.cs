@@ -13,7 +13,7 @@ namespace VrAudioCena.WebApi.Infrastructure.Persistence
 
         void SaveAiFeedback(Guid operationId, List<string> feedback);
 
-        void SaveAudio(Guid operationId, string urlAudio);
+        void SaveAudio(Guid operationId, List<string> urlAudio);
 
         void Fail(Guid operationId, string errorMessage);
 

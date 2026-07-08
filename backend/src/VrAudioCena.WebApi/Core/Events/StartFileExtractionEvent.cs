@@ -5,7 +5,7 @@ namespace VrAudioCena.WebApi.Core.Events
     public class StartFileExtractionEvent : INotification
     {
         public string FilePath { get; }
-        public Guid OperationId { get; init; }
+        public Guid OperationId { get; }
 
         public StartFileExtractionEvent (string filePath, Guid operationId)
         {

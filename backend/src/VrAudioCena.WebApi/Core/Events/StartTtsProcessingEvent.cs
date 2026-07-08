@@ -4,11 +4,11 @@ namespace VrAudioCena.WebApi.Core.Events
 {
     public class StartTtsProcessingEvent : INotification
     {
-        public List<string> Questions {get; set;} = new List<string>();
+        public Guid operationId { get; }
 
-        public StartTtsProcessingEvent (List<String> questions)
+        public StartTtsProcessingEvent(Guid operationId)
         {
-            Questions = questions;
+            this.operationId = operationId;
         }
     }
 }

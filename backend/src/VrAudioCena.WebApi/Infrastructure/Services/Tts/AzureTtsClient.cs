@@ -1,4 +1,5 @@
 using Microsoft.CognitiveServices.Speech;
+using Microsoft.CognitiveServices.Speech.Audio;
 using VrAudioCena.WebApi.Infrastructure.Persistence;
 
 namespace VrAudioCena.WebApi.Infrastructure.Services.Tts
@@ -8,7 +9,9 @@ namespace VrAudioCena.WebApi.Infrastructure.Services.Tts
         private readonly IOperationRepository _operationRepository;
         private readonly string _speechKey;
         private readonly string _speechRegion;
+
         private static readonly Random Random = new();
+
         private static readonly string[] AvailableVoices =
         {
             "pt-BR-FranciscaNeural",
@@ -29,7 +32,6 @@ namespace VrAudioCena.WebApi.Infrastructure.Services.Tts
                 ?? throw new Exception("AZURE_SPEECH_REGION not found");
         }
 
-
         public async Task<List<string>> ConvertTextToSpeechAsync(
             Guid operationId,
             CancellationToken cancellationToken)
@@ -41,10 +43,15 @@ namespace VrAudioCena.WebApi.Infrastructure.Services.Tts
                 throw new Exception("AI feedback not found");
             }
 
+            var directory = "audio";
+            Directory.CreateDirectory(directory);
+
             var audioFiles = new List<string>();
 
             for (int i = 0; i < texts.Count; i++)
             {
+                cancellationToken.ThrowIfCancellationRequested();
+
                 var voice = AvailableVoices[
                     Random.Next(AvailableVoices.Length)
                 ];
@@ -56,10 +63,19 @@ namespace VrAudioCena.WebApi.Infrastructure.Services.Tts
 
                 speechConfig.SpeechSynthesisVoiceName = voice;
 
-                using var synthesizer = new SpeechSynthesizer(speechConfig);
+                var filePath = Path.Combine(
+                    directory,
+                    $"{operationId}_{i}.wav"
+                );
+
+                using var audioConfig = AudioConfig.FromWavFileOutput(filePath);
+
+                using var synthesizer = new SpeechSynthesizer(
+                    speechConfig,
+                    audioConfig
+                );
 
                 var result = await synthesizer.SpeakTextAsync(texts[i]);
-
 
                 if (result.Reason != ResultReason.SynthesizingAudioCompleted)
                 {
@@ -71,30 +87,9 @@ namespace VrAudioCena.WebApi.Infrastructure.Services.Tts
                     );
                 }
 
-
-                var directory = "audio";
-
-                Directory.CreateDirectory(directory);
-
-
-                var filePath = Path.Combine(
-                    directory,
-                    $"{operationId}_{i}.wav"
-                );
-
-
-                await File.WriteAllBytesAsync(
-                    filePath,
-                    result.AudioData,
-                    cancellationToken
-                );
-
-
                 audioFiles.Add(filePath);
             }
-
             return audioFiles;
         }
-
     }
 }
