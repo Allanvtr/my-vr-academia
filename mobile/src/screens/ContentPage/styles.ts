@@ -8,6 +8,13 @@ export const TopContainer = styled.View`
     margin-bottom: 20px;
 `;
 
+export const ErrorMessage = styled.Text`
+    background-color: red;
+    text-align: center;
+    font-size: 20px;
+    font-family: ${({ theme }) => theme.fonts.medium}
+`
+
 export const BackButton = styled.TouchableOpacity`
     position: absolute;
     left: 10px;
@@ -42,7 +49,7 @@ export const FileButton = styled.TouchableOpacity`
 
 export const FileButtonText = styled.Text`
     font-size: 18px;
-    text-align: center
+    text-align: center;
 `;
 
 export const FileDescription = styled.Text`
