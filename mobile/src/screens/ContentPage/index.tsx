@@ -1,5 +1,7 @@
 import Logo from "../../components/Logo";
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Text } from 'react-native';
+import styled from "styled-components/native";
 import * as S from './styles'
 import CustomButton from "../../components/CustomButton";
 import MetricCard from "../../components/MetricCard"
@@ -9,7 +11,7 @@ import { RootStackParamList } from '../../navigation';
 import { RouteProp } from '@react-navigation/native';
 import { metrics } from '../../constants/metrics';
 import { pick } from '@react-native-documents/picker';
-import { useState } from 'react';
+import { use, useState } from 'react';
 import { DocumentPickerResponse } from '@react-native-documents/picker';
 import api from "../../services/api";
 
@@ -26,37 +28,53 @@ export default function ContentPage({ route }: Props){
     const navigation = useAppNavigation();
     const { title, metricValues }= route.params;
     const [selectedFile, setSelectedFile] = useState<DocumentPickerResponse | null>(null);
+    const [errorMessage, setErrorMessage] = useState(false);
 
     const pickFile = async () => {
         try {
             const [file] = await pick({
                 type: [
                     'application/pdf',
-                    'application/vnd.ms-powerpoint',
-                    'application/vnd.openxmlformats-officedocument.presentationml.presentation',
                 ],
             });
 
             setSelectedFile(file);
 
-            console.log(file);
+            console.log("arquivo: ", file);
 
         } catch (error) {
             console.log(error);
         }
     };
 
-    const testeGet = async () => {
+    const startScene = async () => {
+        if(selectedFile == null){
+            setErrorMessage(true);
+            return;
+        }
+        const formData = new FormData();
+
+        formData.append("questionCount", metricValues.Perguntas);
+        formData.append("file", {
+            uri: selectedFile.uri,
+            type: selectedFile.type,
+            name: selectedFile.name,
+        } as any);
+
         try {
-            const response = await api.get('/Scene');
+            const response = await api.post('/Scene/start', formData);
             console.log('Response:', response.data);
         } catch (error: any) {
-            console.log('message', error.message);
-            console.log('code', error.code);
-            console.log('response', error.response);
-            console.log('request', error.request);
+            console.log('Erro', error);
         }
     };
+
+    const ErrorMessage = styled.Text`
+        color: red;
+        text-align: center;
+        font-size: 20px;
+        font-family: ${({ theme }) => theme.fonts.regular}
+    `;
 
     return(
         <S.Container>
@@ -95,6 +113,12 @@ export default function ContentPage({ route }: Props){
                             : "Selecionar Arquivo"}
                     </S.FileButtonText>
                 </S.FileButton>
+                {errorMessage &&
+                    <ErrorMessage>
+                        Erro! Insira uma apresentação para iniciar a cena.
+                    </ErrorMessage>
+                }
+                
 
             <S.SectionTitle>
                 Resumo
@@ -113,7 +137,7 @@ export default function ContentPage({ route }: Props){
                 name="Iniciar"
                 onClick={() => {
                     console.log(title, metricValues)
-                    testeGet()                
+                    startScene()                
                 }}
             />
             <BottomBar/>

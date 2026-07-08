@@ -5,6 +5,7 @@ Thumbs.db
 *.swp
 .vscode/
 .idea/
+**/audio/
 
 [Ll]ibrary/
 [Tt]emp/

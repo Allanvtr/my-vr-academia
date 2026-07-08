@@ -8,7 +8,7 @@ namespace VrAudioCena.WebApi.Infrastructure.Persistence.Models
 
         public List<string>? AiFeedback { get; set; }
 
-        public string? AudioUrl { get; set; }
+        public List<string>? AudioUrl { get; set; }
 
         public string? ErrorMessage { get; set; }
     }

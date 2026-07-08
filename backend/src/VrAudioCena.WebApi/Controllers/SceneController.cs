@@ -29,9 +29,11 @@ namespace VrAudioCena.WebApi.Controllers
 
         [HttpPost("start")]
         public async Task<IActionResult> UploadPdf(
-            IFormFile file,
+            [FromForm] IFormFile file,
+            [FromForm] int questionCount,
             CancellationToken cancellationToken)
         {
+            _logger.LogInformation("Question count: {QuestionCount}", questionCount);
             if (file == null || file.Length == 0)
             {
                 return BadRequest("No file was uploaded.");
