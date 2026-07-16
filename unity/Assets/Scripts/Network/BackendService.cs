@@ -7,7 +7,9 @@ public class BackendService
 
     public async Task<StatusResponse> BuscarStatus(string id)
     {
-        string json = await api.Get($"operacoes/{id}");
+        string json = await api.Get($"status/{id}");
+
+        Debug.Log("Json Retornado" + json);
 
         return JsonUtility.FromJson<StatusResponse>(json);
     }
