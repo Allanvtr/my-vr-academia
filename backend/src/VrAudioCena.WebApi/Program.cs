@@ -4,6 +4,7 @@ using VrAudioCena.WebApi.Infrastructure.Services.AI;
 using VrAudioCena.WebApi.Infrastructure.Services.DocumentProcessing;
 using DotNetEnv;
 using VrAudioCena.WebApi.Infrastructure.Services.Tts;
+using VrAudioCena.WebApi.Hubs;
 
 Env.Load();
 var builder = WebApplication.CreateBuilder(args);
@@ -40,6 +41,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-// app.MapHub<CenaHub>("/cenaHub"); // Exemplo do seu Hub do SignalR
+app.MapHub<SceneHub>("/sceneHub");
 
 app.Run();

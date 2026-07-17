@@ -7,7 +7,7 @@ using VrAudioCena.WebApi.Infrastructure.Persistence.Models;
 namespace VrAudioCena.WebApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class SceneController : ControllerBase
     {
         private readonly IOperationRepository _operationRepository;
@@ -25,6 +25,37 @@ namespace VrAudioCena.WebApi.Controllers
             _eventQueue = eventQueue;
             _mediator = mediator;
             _logger = logger;
+        }
+
+        [HttpGet("status/{id}")]
+        public IActionResult GetStatus(Guid id)
+        {
+            _logger.LogInformation("Requisição chegou aqui");
+
+            if (!_operationRepository.TryGet(id, out var operation))
+            {
+                return NotFound(new
+                {
+                    operationId = id,
+                    status = "NotFound"
+                });
+            }
+
+            if (operation?.Status != OperationStatus.Completed)
+            {
+                return Ok(new
+                {
+                    operationId = id,
+                    status = operation?.Status.ToString()
+                });
+            }
+
+            return Ok(new
+            {
+                operationId = id,
+                status = operation.Status.ToString(),
+                audioUrl = operation.AudioUrl
+            });
         }
 
         [HttpPost("start")]
