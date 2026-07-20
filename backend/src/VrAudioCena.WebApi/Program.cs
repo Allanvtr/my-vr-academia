@@ -33,12 +33,14 @@ builder.Services.AddSingleton<IPdfTextExtractor, PdfTextExtractor>();
 builder.Services.AddSingleton<ITextToSpeechService, AzureTtsClient>();
 
 var app = builder.Build();
+Console.WriteLine(app.Environment.WebRootPath);
 
 // 2. ATIVAR O CORS (Logo após o app.Build() e ANTES da Autorização/Endpoints)
 app.UseCors("PermitirReactEUnity");
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
+app.UseStaticFiles();
 
 app.MapControllers();
 app.MapHub<SceneHub>("/sceneHub");
