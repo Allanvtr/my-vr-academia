@@ -1,11 +1,24 @@
+# Sistema
 .DS_Store
 Thumbs.db
+
+# Logs temporários
 *.log
 *.tmp
 *.swp
+
+# IDE
 .vscode/
 .idea/
-**/audio/
+.vs/
+
+# Ambiente
+.env
+.env.*
+
+# =====================
+# Unity
+# =====================
 
 [Ll]ibrary/
 [Tt]emp/
@@ -16,17 +29,24 @@ Thumbs.db
 UserSettings/
 MemoryCaptures/
 
-*.csproj
-*.unityproj
-*.sln
-*.suo
-*.user
-*.userprefs
-*.pidb
-*.booproj
+# Arquivos gerados pelo Visual Studio da Unity
+unity/*.csproj
+unity/*.unityproj
+unity/*.sln
+unity/*.suo
+unity/*.user
+unity/*.userprefs
 
+# Builds Unity
 *.apk
 *.aab
+
+# Áudios gerados pelo backend
+backend/src/VrAudioCena.WebApi/wwwroot/audio/
+
+# =====================
+# React Native
+# =====================
 
 node_modules/
 npm-debug.log*
@@ -44,24 +64,21 @@ ios/build/
 .expo/
 .expo-shared/
 
-backend/node_modules/
-backend/dist/
-backend/build/
+# =====================
+# Backend .NET
+# =====================
 
-.env
-.env.*
+**/bin/
+**/obj/
 
-/[Aa]ndroid-app/unityLibrary/symbols/
-**/*.so
+# =====================
+# Frontend builds
+# =====================
 
 coverage/
 dist/
 build/
 
-Library/
-Temp/
-Obj/
-Build/
-Logs/
-UserSettings/
-.vs/
+# Bibliotecas nativas Android
+[Aa]ndroid-app/unityLibrary/symbols/
+**/*.so
