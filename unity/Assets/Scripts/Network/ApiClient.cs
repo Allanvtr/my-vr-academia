@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ApiClient
 {
-    private const string BaseUrl = "http://localhost:5116/Scene";
+    private const string BaseUrl = "http://localhost:5116";
 
     public async Task<string> Get(string endpoint)
     {
@@ -25,6 +25,54 @@ public class ApiClient
             }
 
         return request.downloadHandler.text;
+    }
+
+    public async Task<AudioClip> GetAudioClip(string endpoint)
+    {
+        string url = $"{BaseUrl}/{endpoint}";
+
+        Debug.Log($"1 - URL: {url}");
+
+        UnityWebRequest request = null;
+
+        try
+        {
+            request = UnityWebRequestMultimedia.GetAudioClip(
+                url,
+                AudioType.WAV);
+
+            Debug.Log("2 - Request criada");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Erro criando request: {e}");
+            throw;
+        }
+
+        var operation = request.SendWebRequest();
+
+        Debug.Log("3 - Request enviada");
+
+        while (!operation.isDone)
+        {
+            await Task.Yield();
+        }
+
+        Debug.Log($"4 - Terminou: {request.result}");
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError($"Erro: {request.error}");
+            throw new Exception(request.error);
+        }
+
+        Debug.Log("5 - Pegando AudioClip");
+
+        var clip = DownloadHandlerAudioClip.GetContent(request);
+
+        Debug.Log($"6 - AudioClip criado: {clip.length}");
+
+        return clip;
     }
 
     public async Task<string> Post(string endpoint, string json)
