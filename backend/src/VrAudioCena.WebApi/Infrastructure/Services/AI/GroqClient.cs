@@ -27,7 +27,7 @@ namespace VrAudioCena.WebApi.Infrastructure.Services.AI
         }
 
 
-        public async Task<List<string>> ProcessPresentationAsync(string presentation)
+        public async Task<List<string>> ProcessPresentationAsync(string presentation, int questionCount)
         {
             var request = new
             {
@@ -43,13 +43,13 @@ namespace VrAudioCena.WebApi.Infrastructure.Services.AI
                             Com base exclusivamente na apresentação abaixo, gere exatamente 3 perguntas.
 
                             Regras:
-                            - Gere exatamente 3 perguntas.
+                            - Gere exatamente {questionCount} perguntas.
                             - As perguntas devem ser curtas, claras e objetivas.
                             - Não inclua respostas, explicações ou comentários.
                             - Não utilize numeração ou marcadores.
                             - Se alguma informação não estiver presente na apresentação, não invente fatos.
 
-                            Retorne apenas um JSON válido, sem markdown e sem texto adicional, no seguinte formato:
+                            Retorne apenas um JSON válido, sem markdown e sem texto adicional, no seguinte formato de acordo com o número de perguntas solicitado:
 
                             {{
                             ""questions"": [

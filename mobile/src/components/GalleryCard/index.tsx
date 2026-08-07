@@ -11,7 +11,7 @@ export function GalleryCard({ title, description, onClick }: Props) {
     <S.Container
       onPress={onClick}
     >
-      <S.CardImage />
+      <S.CardImage source={require('../../assets/sala_aula.png')}/>
 
       <S.TextContainer>
         <S.Title>{title}</S.Title>

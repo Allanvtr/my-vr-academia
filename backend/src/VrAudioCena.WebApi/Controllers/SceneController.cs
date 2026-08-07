@@ -110,7 +110,7 @@ namespace VrAudioCena.WebApi.Controllers
 
                 // Start AI processing in background
                 await _eventQueue.EnqueueAsync(
-                    new StartAiProcessingEvent(id),
+                    new StartAiProcessingEvent(id, questionCount),
                     cancellationToken);
 
                 return Accepted(new

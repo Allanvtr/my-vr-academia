@@ -4,7 +4,6 @@ import MetricsPage from './src/screens/MetricsPage';
 import ContentPage from './src/screens/ContentPage';
 import { ThemeProvider } from 'styled-components/native';
 import theme from './src/theme';
-import BottomBar from './src/components/BottomBar'
 import Routes from './src/navigation';
 
 // const { UnityLauncher } = NativeModules;

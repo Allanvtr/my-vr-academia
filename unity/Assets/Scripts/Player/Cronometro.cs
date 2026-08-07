@@ -4,7 +4,8 @@ using TMPro;
 public class Cronometro : MonoBehaviour
 {
     public TextMeshProUGUI texto;
-    private float tempo = 120;
+
+    private float tempo = 120f;
     private bool rodando = true;
 
     void Update()
@@ -13,11 +14,17 @@ public class Cronometro : MonoBehaviour
         {
             tempo -= Time.deltaTime;
 
-            int minutos = Mathf.FloorToInt(tempo / 60);
-            int segundos = Mathf.FloorToInt(tempo % 60);
-
-            texto.text = string.Format("{0:00}:{1:00}", minutos, segundos);
+            if (tempo <= 0f)
+            {
+                tempo = 0f;
+                rodando = false;
+            }
         }
+
+        int minutos = Mathf.FloorToInt(tempo / 60f);
+        int segundos = Mathf.FloorToInt(tempo % 60f);
+
+        texto.text = string.Format("{0:00}:{1:00}", minutos, segundos);
     }
 
     public void Parar()
@@ -25,13 +32,19 @@ public class Cronometro : MonoBehaviour
         rodando = false;
     }
 
-    public void Resetar()
+    public void Resetar(float time)
     {
-        tempo = 0f;
+        tempo = time;
+        rodando = true;
     }
 
     public void SetTime(float time)
     {
-        tempo = time;
+        tempo = Mathf.Max(0f, time);
+    }
+
+    public float GetTime()
+    {
+        return tempo;
     }
 }

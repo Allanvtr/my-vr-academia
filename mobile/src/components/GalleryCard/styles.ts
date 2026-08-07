@@ -8,7 +8,7 @@ export const Container = styled.TouchableOpacity`
   margin-bottom: 20px;
 `;
 
-export const CardImage = styled.View`
+export const CardImage = styled.Image`
   background-color: #767676;
   height: 104px;
   width: 104px;

@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class ApiClient
 {
-    private const string BaseUrl = "http://localhost:5116";
+    private const string BaseUrl = "https://starring-purse-blabber.ngrok-free.dev";
 
     public async Task<string> Get(string endpoint)
     {
         using UnityWebRequest request = UnityWebRequest.Get($"{BaseUrl}/{endpoint}");
-        Debug.Log($"{BaseUrl}/{endpoint}");
+        Debug.Log($"[CONEXAO] {BaseUrl}/{endpoint}");
 
         var operation = request.SendWebRequest();
 
@@ -24,6 +24,8 @@ public class ApiClient
                 throw new Exception(request.error);
             }
 
+        Debug.Log("[CONEXAO] Request Response" + request.responseCode);
+
         return request.downloadHandler.text;
     }
 
@@ -31,7 +33,7 @@ public class ApiClient
     {
         string url = $"{BaseUrl}/{endpoint}";
 
-        Debug.Log($"1 - URL: {url}");
+        Debug.Log($"[CONEXAO] 1 - URL: {url}");
 
         UnityWebRequest request = null;
 
@@ -41,36 +43,36 @@ public class ApiClient
                 url,
                 AudioType.WAV);
 
-            Debug.Log("2 - Request criada");
+            Debug.Log("[CONEXAO] 2 - Request criada");
         }
         catch (Exception e)
         {
-            Debug.LogError($"Erro criando request: {e}");
+            Debug.LogError($"[CONEXAO] Erro criando request: {e}");
             throw;
         }
 
         var operation = request.SendWebRequest();
 
-        Debug.Log("3 - Request enviada");
+        Debug.Log("[CONEXAO] 3 - Request enviada");
 
         while (!operation.isDone)
         {
             await Task.Yield();
         }
 
-        Debug.Log($"4 - Terminou: {request.result}");
+        Debug.Log($"[CONEXAO] 4 - Terminou: {request.result}");
 
         if (request.result != UnityWebRequest.Result.Success)
         {
-            Debug.LogError($"Erro: {request.error}");
+            Debug.LogError($"[CONEXAO] Erro: {request.error}");
             throw new Exception(request.error);
         }
 
-        Debug.Log("5 - Pegando AudioClip");
+        Debug.Log("[CONEXAO] 5 - Pegando AudioClip");
 
         var clip = DownloadHandlerAudioClip.GetContent(request);
 
-        Debug.Log($"6 - AudioClip criado: {clip.length}");
+        Debug.Log($"[CONEXAO] 6 - AudioClip criado: {clip.length}");
 
         return clip;
     }

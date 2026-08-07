@@ -1,0 +1,14 @@
+<linker>
+  <assembly fullname="Microsoft.AspNetCore.SignalR.Client.Core">
+    <type fullname="Microsoft.AspNetCore.SignalR.Client.HubConnection" preserve="all"/>
+  </assembly>
+
+  <assembly fullname="Microsoft.AspNetCore.SignalR.Common">
+    <preserve fullname="all"/>
+  </assembly>
+
+  <assembly fullname="Microsoft.AspNetCore.Http.Connections.Client">
+    <preserve fullname="all"/>
+  </assembly>
+
+</linker>

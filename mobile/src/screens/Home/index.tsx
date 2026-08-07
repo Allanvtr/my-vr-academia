@@ -15,43 +15,7 @@ type SceneData = {
 const data: SceneData[] = [
   {
     title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-  },
-  {
-    title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-  },
-  {
-    title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-  },
-  {
-    title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-  },
-  {
-    title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-  },
-  {
-    title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-  },
-  {
-    title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-  },
-  {
-    title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-  },
-  {
-    title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-  },
-  {
-    title: 'Sala de Aula',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
+    description: 'Ambiente virtual que simula uma sala de aula para prática de apresentações.',
   },
 ];
 

@@ -23,7 +23,15 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Tempo: {config.Tempo}");
         Debug.Log($"Fase: {config.Fase}");
 
-        cronometro.SetTime(200);
+        if (config.Tempo <= 0)
+        {
+            cronometro.SetTime(10);
+        }
+        else
+        {
+            cronometro.SetTime(config.Tempo);
+        }
+            
 
         StatusResponse status = null;
 
@@ -32,11 +40,11 @@ public class GameManager : MonoBehaviour
             status =
                 await backend.BuscarStatus(config.OperacaoId);
 
-            Debug.Log($"Status: {status.status}");
+            Debug.Log($"[CONEXAO] Status: {status.status}");
         }
         catch (Exception ex)
         {
-            Debug.LogError(ex.Message);
+            Debug.LogError("[CONEXAO] Erro Requisição " + ex.Message);
         }
 
         signalR.AudioGenerated += ReceiveAudio;
@@ -47,6 +55,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("[CONEXAO] Indo para signalR");
             await signalR.ConnectAsync();
         }
 
@@ -65,14 +74,17 @@ public class GameManager : MonoBehaviour
 
             AudioClip clip = await backend.DownloadAudio(audios[i]);
 
-            Debug.Log($"Tocando áudio {i}");
-
-            audioSource.clip = clip;
-            audioSource.Play();
-
-            while (audioSource.isPlaying)
+            while (cronometro.GetTime() != 0)
             {
-                await Task.Yield();
+                Debug.Log($"Tocando áudio {i}");
+
+                audioSource.clip = clip;
+                audioSource.Play();
+
+                while (audioSource.isPlaying)
+                {
+                    await Task.Yield();
+                }
             }
         }
 
