@@ -89,15 +89,12 @@ namespace VrAudioCena.WebApi.Controllers
                     await file.CopyToAsync(stream, cancellationToken);
                 }
 
-                // Initialize operation tracking
                 _operationRepository.Start(id);
 
-                // Extract text from PDF before starting AI processing
                 await _mediator.Publish(
                     new StartFileExtractionEvent(tempPath, id),
                     cancellationToken);
 
-                // Check if PDF extraction failed
                 if (_operationRepository.TryGet(id, out var operation) &&
                     operation?.Status == OperationStatus.Failed)
                 {
@@ -108,7 +105,6 @@ namespace VrAudioCena.WebApi.Controllers
                     });
                 }
 
-                // Start AI processing in background
                 await _eventQueue.EnqueueAsync(
                     new StartAiProcessingEvent(id, questionCount),
                     cancellationToken);
@@ -120,7 +116,6 @@ namespace VrAudioCena.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                // Remove temporary file if processing fails
                 if (System.IO.File.Exists(tempPath))
                 {
                     System.IO.File.Delete(tempPath);
