@@ -1,25 +1,41 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Cronometro cronometro;
+    [SerializeField]
+    private Cronometro cronometro;
+
+    [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private float tempoResposta = 5f;
 
     private readonly BackendService backend = new();
-    
+
     public SignalRService signalR = new();
 
     private GameConfig config;
 
-    [SerializeField] private AudioSource audioSource;
+    private List<AudioClip> perguntas = new();
+
+    private GazeAnimation[] personagens;
+
+    private bool esperandoPergunta = false;
+    private bool processandoPergunta = false;
 
     async void Start()
     {
+        personagens = FindObjectsByType<GazeAnimation>(
+            FindObjectsSortMode.None
+        );
+
         config = AndroidIntentReader.GetConfig();
 
-        Debug.Log($"OperationId: {config.OperacaoId}");
+        Debug.Log($"OperationId: {config.OperationId}");
         Debug.Log($"Tempo: {config.Tempo}");
         Debug.Log($"Fase: {config.Fase}");
 
@@ -31,68 +47,215 @@ public class GameManager : MonoBehaviour
         {
             cronometro.SetTime(config.Tempo);
         }
-            
 
         StatusResponse status = null;
 
         try
         {
-            status =
-                await backend.BuscarStatus(config.OperacaoId);
+            status = await backend.BuscarStatus(config.OperationId);
 
-            Debug.Log($"[CONEXAO] Status: {status.status}");
+            Debug.Log(
+                $"[CONEXAO] Status: {status.status}"
+            );
         }
         catch (Exception ex)
         {
-            Debug.LogError("[CONEXAO] Erro Requisição " + ex.Message);
+            Debug.LogError(
+                "[CONEXAO] Erro RequisiÃ§Ã£o " + ex.Message
+            );
         }
 
-        signalR.AudioGenerated += ReceiveAudio;
+        signalR.AudioGenerated += OnAudioGenerated;
 
         if (status?.status == "Completed")
         {
-            // baixar o aúdio
+            Debug.Log(
+                $"[REQUISICAO] ID: {status.operationId}, " +
+                $"Status: {status.status}"
+            );
+
+            await ReceberPerguntas(status.audioUrl);
+
+            IniciarFluxoPerguntas();
         }
         else
         {
-            Debug.Log("[CONEXAO] Indo para signalR");
+            Debug.Log("[CONEXAO] Indo para SignalR");
+
             await signalR.ConnectAsync();
         }
-
-
-        //await signalR.Disconnect();
-
     }
 
-    public async void ReceiveAudio(List<string> audios)
+    private async void OnAudioGenerated(List<string> audios)
     {
-        Debug.Log("Quantidade de áudios: " + audios.Count);
+        await ReceberPerguntas(audios);
+
+        IniciarFluxoPerguntas();
+    }
+
+    private async Task ReceberPerguntas(List<string> audios)
+    {
+        perguntas.Clear();
 
         for (int i = 0; i < audios.Count; i++)
         {
-            Debug.Log($"Baixando áudio {i}");
+            Debug.Log(
+                $"[AUDIO] Baixando pergunta {i}: {audios[i]}"
+            );
 
-            AudioClip clip = await backend.DownloadAudio(audios[i]);
+            AudioClip clip =
+                await backend.DownloadAudio(audios[i]);
 
-            while (cronometro.GetTime() != 0)
-            {
-                Debug.Log($"Tocando áudio {i}");
+            perguntas.Add(clip);
 
-                audioSource.clip = clip;
-                audioSource.Play();
-
-                while (audioSource.isPlaying)
-                {
-                    await Task.Yield();
-                }
-            }
+            Debug.Log(
+                $"[AUDIO] Pergunta {i} baixada"
+            );
         }
 
-        Debug.Log("Todos os áudios terminaram");
+        Debug.Log(
+            $"[AUDIO] Total de perguntas: {perguntas.Count}"
+        );
+    }
+
+    private void IniciarFluxoPerguntas()
+    {
+        Debug.Log("[GAME] Perguntas prontas.");
+
+        // A apresentaÃ§Ã£o continua normalmente.
+        // Quando o cronÃ´metro chegar a zero,
+        // o Update() iniciarÃ¡ as perguntas.
     }
 
     private void Update()
     {
-        
+        if (processandoPergunta)
+            return;
+
+        if (esperandoPergunta)
+            return;
+
+        if (perguntas.Count == 0)
+            return;
+
+        if (cronometro.Terminou())
+        {
+            AtivarProximaRodada();
+        }
+    }
+
+    private void AtivarProximaRodada()
+    {
+        esperandoPergunta = true;
+
+        Debug.Log("[GAME] Tempo acabou!");
+        Debug.Log("[GAME] Personagens levantando a mÃ£o...");
+
+        foreach (GazeAnimation personagem in personagens)
+        {
+            if (!personagem.TemPergunta())
+                continue;
+
+            int index = personagem.PerguntaIndex;
+
+            if (index < 0 || index >= perguntas.Count)
+                continue;
+
+            personagem.LevantarMao();
+        }
+    }
+
+    public async void SelecionarPersonagem(GazeAnimation personagem)
+    {
+        if (processandoPergunta)
+            return;
+
+        if (!esperandoPergunta)
+            return;
+
+        if (!personagem.TemPergunta())
+            return;
+
+        int index = personagem.PerguntaIndex;
+
+        if (index < 0 || index >= perguntas.Count)
+        {
+            Debug.LogError(
+                $"Pergunta invÃ¡lida: {index}"
+            );
+
+            return;
+        }
+
+        processandoPergunta = true;
+        esperandoPergunta = false;
+
+        Debug.Log($"[GAME] Personagem selecionado: {personagem.name}");
+        Debug.Log($"[GAME] Personagem index: {index}");
+
+        personagem.BaixarMao();
+        personagem.MarcarComoRespondida();
+
+        AudioClip audio = perguntas[index];
+
+        await TocarAudio(audio);
+
+        if (TodasPerguntasRespondidas())
+        {
+            FinalizarPerguntas();
+            return;
+        }
+
+        Debug.Log(
+            "[GAME] Iniciando tempo de resposta: 20 segundos"
+        );
+
+        cronometro.Resetar(tempoResposta);
+
+        processandoPergunta = false;
+    }
+
+    private async Task TocarAudio(AudioClip audio)
+    {
+        if (audio == null)
+        {
+            Debug.LogError("[AUDIO] AudioClip nulo!");
+            return;
+        }
+
+        audioSource.clip = audio;
+        audioSource.Play();
+
+        Debug.Log("[AUDIO] Tocando pergunta...");
+
+        while (audioSource.isPlaying)
+        {
+            await Task.Yield();
+        }
+
+        Debug.Log("[AUDIO] Pergunta terminou.");
+    }
+
+    private bool TodasPerguntasRespondidas()
+    {
+        foreach (GazeAnimation personagem in personagens)
+        {
+            if (personagem.TemPergunta())
+                return false;
+        }
+
+        return true;
+    }
+
+    private void FinalizarPerguntas()
+    {
+        Debug.Log("[GAME] NÃ£o existem mais perguntas.");
+
+        cronometro.Parar();
+
+        processandoPergunta = false;
+        esperandoPergunta = false;
+
+        _ = signalR.Disconnect();
     }
 }

@@ -1,6 +1,6 @@
 export type MetricType =
-  | 'Público'
-  | 'Ruído'
+  | 'Publico'
+  | 'Ruido'
   | 'Brilho'
   | 'Perguntas'
   | 'Tempo';

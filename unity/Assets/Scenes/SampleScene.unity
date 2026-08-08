@@ -122,6 +122,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &2836097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2836098}
+  m_Layer: 0
+  m_Name: PontoOlhar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2836098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2836097}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.023, y: 1.0049998, z: -0.3134763}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 98884305}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &46945967
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +330,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 692906759}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       insertIndex: -1
@@ -314,6 +348,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 781868075}
   m_SourcePrefab: {fileID: 100100000, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+--- !u!1 &87949733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 87949734}
+  m_Layer: 0
+  m_Name: PontoOlhar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &87949734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87949733}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.05, y: 1.0049998, z: -0.40999928}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 988335742}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &88132595 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
@@ -359,8 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9241046c560fa24cbce8b31810004c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2116301389}
-  tempoDeOlhar: 1.5
+  pontoOlhar: {fileID: 180324905}
 --- !u!114 &88132599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,7 +541,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1262384120}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       insertIndex: -1
@@ -537,8 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9241046c560fa24cbce8b31810004c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2116301389}
-  tempoDeOlhar: 1.5
+  pontoOlhar: {fileID: 2836098}
 --- !u!114 &98884308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,8 +727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9241046c560fa24cbce8b31810004c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2116301389}
-  tempoDeOlhar: 1.5
+  pontoOlhar: {fileID: 779916901}
 --- !u!114 &137593838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,6 +761,68 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &143869820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 143869821}
+  m_Layer: 0
+  m_Name: PontoOlhar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &143869821
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143869820}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.049, y: 0.993, z: -0.281}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 402697367}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &180324904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 180324905}
+  m_Layer: 0
+  m_Name: PontoOlhar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &180324905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180324904}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.015, y: 1.0049998, z: -0.3134763}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 88132596}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &197306857
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,7 +1014,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1428137897}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       insertIndex: -1
@@ -985,7 +1115,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 180324905}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       insertIndex: -1
@@ -1045,8 +1178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9241046c560fa24cbce8b31810004c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2116301389}
-  tempoDeOlhar: 1.5
+  pontoOlhar: {fileID: 875052288}
 --- !u!114 &253054462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1163,7 +1295,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 794628105}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       insertIndex: -1
@@ -1355,7 +1490,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1134413186}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       insertIndex: -1
@@ -1370,6 +1508,98 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 367458933}
   m_SourcePrefab: {fileID: 100100000, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+--- !u!1 &333649829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 333649831}
+  - component: {fileID: 333649832}
+  m_Layer: 0
+  m_Name: CharacterManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &333649831
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333649829}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.1301346, y: 0.3026156, z: 3.9634326}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &333649832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333649829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c2957d17ec290840b7edf56bfedb9c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  personagens:
+  - {fileID: 402697361}
+  - {fileID: 98884304}
+  - {fileID: 1671997141}
+  - {fileID: 88132595}
+  - {fileID: 836439961}
+  - {fileID: 2005430517}
+  - {fileID: 137593834}
+  - {fileID: 367458931}
+  - {fileID: 912273568}
+  - {fileID: 703663041}
+  - {fileID: 2038562658}
+  - {fileID: 1422939643}
+  - {fileID: 253054458}
+  - {fileID: 988335741}
+  - {fileID: 1554120389}
+  - {fileID: 781868073}
+--- !u!1 &351520911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 351520913}
+  m_Layer: 0
+  m_Name: PerguntaManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &351520913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351520911}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.1301346, y: 0.3026156, z: 3.9634326}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &359524569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1453,7 +1683,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 87949734}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       insertIndex: -1
@@ -1551,7 +1784,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 875052288}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       insertIndex: -1
@@ -1611,8 +1847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9241046c560fa24cbce8b31810004c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2116301389}
-  tempoDeOlhar: 1.5
+  pontoOlhar: {fileID: 1134413186}
 --- !u!114 &367458935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1696,8 +1931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9241046c560fa24cbce8b31810004c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2116301389}
-  tempoDeOlhar: 1.5
+  pontoOlhar: {fileID: 143869821}
 --- !u!4 &402697367 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
@@ -1903,7 +2137,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 808461032}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       insertIndex: -1
@@ -1918,6 +2155,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2038562660}
   m_SourcePrefab: {fileID: 100100000, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+--- !u!1 &489441453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 489441454}
+  m_Layer: 0
+  m_Name: PontoOlhar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &489441454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489441453}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.01, y: 1.0049998, z: -0.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 703663042}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &540569699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2062,6 +2330,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bff59d3b72fc4749941fa6d6e5c1f41, type: 3}
+--- !u!1 &692906758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 692906759}
+  m_Layer: 0
+  m_Name: PontoOlhar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &692906759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692906758}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 1.0049998, z: -0.40999964}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 781868074}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &703663041 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
@@ -2107,8 +2406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9241046c560fa24cbce8b31810004c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2116301389}
-  tempoDeOlhar: 1.5
+  pontoOlhar: {fileID: 489441454}
 --- !u!114 &703663045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2410,7 +2708,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1470706395}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       insertIndex: -1
@@ -2425,6 +2726,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1554120391}
   m_SourcePrefab: {fileID: 100100000, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+--- !u!1 &779916900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 779916901}
+  m_Layer: 0
+  m_Name: PontoOlhar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &779916901
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779916900}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.030000009, y: 1.0049998, z: -0.34}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 137593835}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &781868073 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
@@ -2470,8 +2802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9241046c560fa24cbce8b31810004c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2116301389}
-  tempoDeOlhar: 1.5
+  pontoOlhar: {fileID: 692906759}
 --- !u!114 &781868077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2505,6 +2836,68 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &794628104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 794628105}
+  m_Layer: 0
+  m_Name: PontoOlhar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &794628105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794628104}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.051, y: 1.0049998, z: -0.3134763}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1671997142}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &808461031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 808461032}
+  m_Layer: 0
+  m_Name: PontoOlhar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &808461032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808461031}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.03, y: 1.0049998, z: -0.37999985}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2038562659}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &832691433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2535,7 +2928,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.839
+      value: -3.915
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2588,7 +2981,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 143869821}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       insertIndex: -1
@@ -2648,8 +3044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9241046c560fa24cbce8b31810004c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2116301389}
-  tempoDeOlhar: 1.5
+  pontoOlhar: {fileID: 1428137897}
 --- !u!114 &836439965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2683,6 +3078,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &875052287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 875052288}
+  m_Layer: 0
+  m_Name: PontoOlhar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &875052288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875052287}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.07, y: 1.0049998, z: -0.41}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 253054459}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &912273568 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
@@ -2728,8 +3154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9241046c560fa24cbce8b31810004c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2116301389}
-  tempoDeOlhar: 1.5
+  pontoOlhar: {fileID: 1262384120}
 --- !u!114 &912273572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2902,8 +3327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9241046c560fa24cbce8b31810004c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2116301389}
-  tempoDeOlhar: 1.5
+  pontoOlhar: {fileID: 87949734}
 --- !u!114 &988335745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3114,7 +3538,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 2836098}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       insertIndex: -1
@@ -3129,6 +3556,99 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 98884306}
   m_SourcePrefab: {fileID: 100100000, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+--- !u!1 &1134413185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1134413186}
+  m_Layer: 0
+  m_Name: PontoOlhar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1134413186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134413185}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.02, y: 1.0049998, z: -0.33999997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 367458932}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1227041953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1227041954}
+  m_Layer: 0
+  m_Name: PontoOlhar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1227041954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227041953}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.092, y: 1.0049998, z: -0.33999997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2005430518}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1262384119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1262384120}
+  m_Layer: 0
+  m_Name: PontoOlhar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1262384120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262384119}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.09, y: 1.0049998, z: -0.412}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 912273569}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1378793064
 GameObject:
   m_ObjectHideFlags: 0
@@ -3138,8 +3658,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1378793066}
-  - component: {fileID: 1378793065}
   - component: {fileID: 1378793068}
+  - component: {fileID: 1378793069}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3147,36 +3667,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1378793065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1378793064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c2957d17ec290840b7edf56bfedb9c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quantidade: 12
-  personagens:
-  - {fileID: 402697361}
-  - {fileID: 98884304}
-  - {fileID: 1671997141}
-  - {fileID: 88132595}
-  - {fileID: 836439961}
-  - {fileID: 2005430517}
-  - {fileID: 137593834}
-  - {fileID: 367458931}
-  - {fileID: 912273568}
-  - {fileID: 703663041}
-  - {fileID: 2038562658}
-  - {fileID: 1422939643}
-  - {fileID: 253054458}
-  - {fileID: 988335741}
-  - {fileID: 1554120389}
-  - {fileID: 781868073}
 --- !u!4 &1378793066
 Transform:
   m_ObjectHideFlags: 0
@@ -3206,6 +3696,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cronometro: {fileID: 2047802190}
   audioSource: {fileID: 2116301392}
+  tempoResposta: 20
+--- !u!114 &1378793069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378793064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd0eff08097bbdf4db9be1fe19542210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 2116301389}
+  gameManager: {fileID: 1378793068}
+  raioTelaAceitavel: 0.1
+  tempoDeOlhar: 1.5
+  velocidadeDecaimento: 1.5
+  usarChecagemDeOclusao: 1
+  layerObstrucao:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1390647514
 GameObject:
   m_ObjectHideFlags: 0
@@ -3345,8 +3857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9241046c560fa24cbce8b31810004c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2116301389}
-  tempoDeOlhar: 1.5
+  pontoOlhar: {fileID: 1621511287}
 --- !u!114 &1422939647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3380,6 +3891,68 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1428137896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1428137897}
+  m_Layer: 0
+  m_Name: PontoOlhar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1428137897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428137896}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.111, y: 1.0049998, z: -0.383}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 836439962}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1470706394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1470706395}
+  m_Layer: 0
+  m_Name: PontoOlhar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1470706395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470706394}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.09, y: 1.0049998, z: -0.40999985}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1554120390}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1537123129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3463,7 +4036,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1621511287}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       insertIndex: -1
@@ -3523,8 +4099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9241046c560fa24cbce8b31810004c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2116301389}
-  tempoDeOlhar: 1.5
+  pontoOlhar: {fileID: 1470706395}
 --- !u!114 &1554120393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3558,6 +4133,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1621511286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1621511287}
+  m_Layer: 0
+  m_Name: PontoOlhar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1621511287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621511286}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.02, y: 1.0049998, z: -0.37999985}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1422939644}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1671997141 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
@@ -3603,8 +4209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9241046c560fa24cbce8b31810004c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2116301389}
-  tempoDeOlhar: 1.5
+  pontoOlhar: {fileID: 794628105}
 --- !u!114 &1671997145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3985,7 +4590,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 489441454}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       insertIndex: -1
@@ -4185,7 +4793,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 779916901}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       insertIndex: -1
@@ -4283,7 +4894,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1227041954}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c1a6cb8d0a64e7439baeae08a26cb83, type: 3}
       insertIndex: -1
@@ -4437,8 +5051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9241046c560fa24cbce8b31810004c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2116301389}
-  tempoDeOlhar: 1.5
+  pontoOlhar: {fileID: 1227041954}
 --- !u!114 &2005430521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4517,8 +5130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9241046c560fa24cbce8b31810004c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2116301389}
-  tempoDeOlhar: 1.5
+  pontoOlhar: {fileID: 808461032}
 --- !u!114 &2038562662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4937,3 +5549,5 @@ SceneRoots:
   - {fileID: 1804310973}
   - {fileID: 710866548}
   - {fileID: 116655667}
+  - {fileID: 333649831}
+  - {fileID: 351520913}

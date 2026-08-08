@@ -2,74 +2,55 @@
 
 public class GazeAnimation : MonoBehaviour
 {
-    public Camera cam;
+    [Tooltip("Ponto usado para medir o olhar (ideal: cabeça). Se vazio, usa a posição do objeto.")]
+    public Transform pontoOlhar;
+
+    private int perguntaIndex = -1;
     private Animator animator;
 
-    public float tempoDeOlhar = 1.5f;
-    private float contador;
-    private bool jaAtivou = false;
+    private bool maoLevantada = false;
+    private bool perguntaRespondida = false;
 
-    void Start()
+    public int PerguntaIndex => perguntaIndex;
+    public bool MaoLevantada => maoLevantada;
+    public bool PerguntaRespondida => perguntaRespondida;
+    public Transform PontoOlhar => pontoOlhar != null ? pontoOlhar : transform;
+
+    private void Start()
     {
         animator = GetComponentInChildren<Animator>();
         if (animator == null)
-        {
-            Debug.LogError("Animator não encontrado!");
-        }
-        else
-        {
-            Debug.Log("Animator encontrado: " + animator.name);
-        }
-        if (cam == null)
-        {
-            Debug.LogError("Camera não iniciada");
-        }
-        else
-        {
-            Debug.LogError("Camera iniciada");
-        }
+            Debug.LogError($"Animator não encontrado em {name}!");
     }
 
-    void Update()
+    public void DefinirPergunta(int index)
     {
-        Debug.Log("Update");
-
-        if (cam == null || animator == null) return;
-
-        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-        RaycastHit hit;
-
-        if (Physics.SphereCast(ray, 1f, out hit, 500f))
-        {
-            Debug.Log($"Acertou: {hit.collider.name} | Tag: {hit.collider.tag}");
-
-            if (hit.transform.GetComponentInParent<GazeAnimation>() == this)
-            {
-                contador += Time.deltaTime;
-
-                if (contador >= tempoDeOlhar)
-                {
-                    if (!jaAtivou)
-                    {
-                        animator.SetTrigger("PlayAnim");
-                        jaAtivou = true;
-                        contador = 0;
-                    }
-                    else
-                    {
-                        animator.SetTrigger("BaixarMao");
-                        jaAtivou = false;
-                    }
-                }
-            }
-            else
-            {
-                contador = Mathf.Max(contador - Time.deltaTime, 0f);
-            }
-        }
-        else
-        {
-            contador = Mathf.Max(contador - Time.deltaTime, 0f);
-        }
+        perguntaIndex = index;
+        perguntaRespondida = false;
+        maoLevantada = false;
+        Debug.Log($"[GAZE] {name} recebeu a pergunta {index}");
     }
+
+    public void LevantarMao()
+    {
+        if (perguntaRespondida || perguntaIndex < 0) return;
+        maoLevantada = true;
+        animator.SetTrigger("PlayAnim");
+        Debug.Log($"[GAZE] {name} levantou a mão. Pergunta: {perguntaIndex}");
+    }
+
+    public void BaixarMao()
+    {
+        maoLevantada = false;
+        animator.SetTrigger("BaixarMao");
+        Debug.Log($"[GAZE] {name} baixou a mão.");
+    }
+
+    public void MarcarComoRespondida()
+    {
+        perguntaRespondida = true;
+        maoLevantada = false;
+    }
+
+    public bool TemPergunta() => perguntaIndex >= 0 && !perguntaRespondida;
 }

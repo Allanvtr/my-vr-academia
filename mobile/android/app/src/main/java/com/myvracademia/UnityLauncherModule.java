@@ -20,7 +20,7 @@ public class UnityLauncherModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void openUnityApp(int tempo, String fase) {
+    public void openUnityApp(int tempo, String fase, String operationId, int publico) {
 
         try {
             Intent intent = new Intent();
@@ -34,13 +34,16 @@ public class UnityLauncherModule extends ReactContextBaseJavaModule {
 
             intent.putExtra("tempo", tempo);
             intent.putExtra("fase", fase);
-
+            intent.putExtra("operationId", operationId);
+            intent.putExtra("publico", publico);
             getReactApplicationContext().startActivity(intent);
 
             Toast.makeText(getReactApplicationContext(), "Abrindo Unity!", Toast.LENGTH_SHORT).show();
 
             Log.d("UNITY_TEST", "Tempo enviado: " + tempo);
             Log.d("UNITY_TEST", "Fase enviada: " + fase);
+            Log.d("UNITY_TEST", "Operation ID enviado: " + operationId);
+            Log.d("UNITY_TEST", "Publico enviado: " + publico);
 
         } catch (Exception e) {
             Toast.makeText(getReactApplicationContext(), "Erro ao abrir Unity", Toast.LENGTH_LONG).show();

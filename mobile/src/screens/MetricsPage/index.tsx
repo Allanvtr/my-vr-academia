@@ -29,22 +29,22 @@ export default function MetricsPage({ route }: Props) {
     const navigation = useAppNavigation();
 
     const [metricValues, setMetricValues] = useState<Record<MetricType, number>>({
-        Público: 0,
-        Ruído: 0,
+        Publico: 0,
+        Ruido: 0,
         Brilho: 0,
         Perguntas: 0,
         Tempo: 0,
     });
 
     const metricConfig: Record<MetricType, { min: number; max: number }> = {
-        Público: { min: 0, max: 50 },
-        Ruído: { min: 0, max: 10 },
+        Publico: { min: 0, max: 50 },
+        Ruido: { min: 0, max: 10 },
         Brilho: { min: 0, max: 10 },
         Perguntas: { min: 0, max: 10 },
         Tempo: { min: 0, max: 48 },
     };
 
-    const [selectedMetric, setselectedMetric] = useState<MetricType>("Público")
+    const [selectedMetric, setselectedMetric] = useState<MetricType>("Publico")
     const sliderValue = metricValues[selectedMetric];
 
     const changeMetric = (newMetric: MetricType) => {

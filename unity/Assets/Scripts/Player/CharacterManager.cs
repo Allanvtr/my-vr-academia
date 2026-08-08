@@ -1,49 +1,99 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    public int quantidade;
     public GameObject[] personagens;
+
+    private GameConfig config;
+
+    private List<GazeAnimation> personagensAtivos = new();
+
+    private void Start()
+    {
+        config = AndroidIntentReader.GetConfig();
+
+        DefinirQuantidade(config.Publico);
+    }
 
     public void DefinirQuantidade(int quantidade)
     {
-        List<int> indices_personagens = SortearPersonagens(quantidade);
+        List<int> indicesPersonagens =
+            SortearPersonagens(quantidade);
 
+        personagensAtivos.Clear();
+
+        // Primeiro desativa todos
         for (int i = 0; i < personagens.Length; i++)
         {
             personagens[i].SetActive(false);
         }
 
-        for (int i = 0; i < indices_personagens.Count; i++)
-            personagens[indices_personagens[i]].SetActive(true);
+        // Depois ativa os sorteados
+        for (int i = 0; i < indicesPersonagens.Count; i++)
+        {
+            GameObject personagem =
+                personagens[indicesPersonagens[i]];
+
+            personagem.SetActive(true);
+
+            GazeAnimation gaze =
+                personagem.GetComponent<GazeAnimation>();
+
+            if (gaze == null)
+            {
+                Debug.LogError(
+                    $"O personagem {personagem.name} " +
+                    $"nÃ£o possui GazeAnimation!"
+                );
+
+                continue;
+            }
+
+            // O Ã­ndice da pergunta Ã© definido aqui
+            gaze.DefinirPergunta(i);
+
+            personagensAtivos.Add(gaze);
+
+            Debug.Log(
+                $"[CHARACTER] {personagem.name} â†’ " +
+                $"Pergunta {i}"
+            );
         }
+    }
+
+    public List<GazeAnimation> GetPersonagensAtivos()
+    {
+        return personagensAtivos;
+    }
 
     public List<int> SortearPersonagens(int quantidade)
     {
-        List<int> indices = new List<int>();
+        quantidade = Mathf.Clamp(
+            quantidade,
+            0,
+            personagens.Length
+        );
 
-        // cria lista com todos os índices possíveis
+        List<int> indices = new();
+
         for (int i = 0; i < personagens.Length; i++)
         {
             indices.Add(i);
         }
 
-        // embaralha a lista
+        // Embaralha
         for (int i = 0; i < indices.Count; i++)
         {
-            int randomIndex = Random.Range(i, indices.Count);
+            int randomIndex =
+                Random.Range(i, indices.Count);
+
             int temp = indices[i];
+
             indices[i] = indices[randomIndex];
             indices[randomIndex] = temp;
         }
 
-        // pega só os N primeiros
         return indices.GetRange(0, quantidade);
-    }
-
-    void Start()
-    {
-        DefinirQuantidade(quantidade);
     }
 }

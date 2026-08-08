@@ -5,8 +5,8 @@ public class Cronometro : MonoBehaviour
 {
     public TextMeshProUGUI texto;
 
-    private float tempo = 120f;
-    private bool rodando = true;
+    private float tempo;
+    private bool rodando = false;
 
     void Update()
     {
@@ -21,6 +21,11 @@ public class Cronometro : MonoBehaviour
             }
         }
 
+        AtualizarTexto();
+    }
+
+    private void AtualizarTexto()
+    {
         int minutos = Mathf.FloorToInt(tempo / 60f);
         int segundos = Mathf.FloorToInt(tempo % 60f);
 
@@ -34,17 +39,28 @@ public class Cronometro : MonoBehaviour
 
     public void Resetar(float time)
     {
-        tempo = time;
+        tempo = Mathf.Max(0f, time);
         rodando = true;
     }
 
     public void SetTime(float time)
     {
         tempo = Mathf.Max(0f, time);
+        rodando = true;
     }
 
     public float GetTime()
     {
         return tempo;
+    }
+
+    public bool Terminou()
+    {
+        return tempo <= 0f;
+    }
+
+    public bool EstaRodando()
+    {
+        return rodando;
     }
 }

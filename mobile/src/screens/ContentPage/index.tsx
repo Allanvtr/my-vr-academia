@@ -48,13 +48,15 @@ export default function ContentPage({ route }: Props){
     };
 
     const startScene = async () => {
-        if(selectedFile == null){
+        if (selectedFile == null) {
             setErrorMessage(true);
             return;
         }
+
         const formData = new FormData();
 
         formData.append("questionCount", metricValues.Perguntas);
+
         formData.append("file", {
             uri: selectedFile.uri,
             type: selectedFile.type,
@@ -62,10 +64,19 @@ export default function ContentPage({ route }: Props){
         } as any);
 
         try {
-            // const response = await api.post('/Scene/start', formData);
-            // console.log('Response:', response.data);
-            NativeModules.UnityLauncher.openUnityApp(metricValues.Tempo, "Hello from React Native!");
-            
+            const response = await api.post('/Scene/start', formData);
+
+            console.log('Response:', response.data);
+
+            const tempoEmSegundos = metricValues.Tempo * 30;
+
+            NativeModules.UnityLauncher.openUnityApp(
+                tempoEmSegundos,
+                "Hello from React Native!",
+                response.data.operationId,
+                metricValues.Publico
+            );
+
         } catch (error: any) {
             console.log('Erro', error);
         }

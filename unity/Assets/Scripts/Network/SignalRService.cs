@@ -50,7 +50,7 @@ public class SignalRService
             return;
         }
 
-        Debug.Log("[CONEXAO] 2 Iniciando conexão ao Hub");
+        Debug.Log("[CONEXAO] 2 Iniciando conexï¿½o ao Hub");
         connection.On<List<string>>(
             "AudioGenerated",
             audios =>
@@ -62,10 +62,10 @@ public class SignalRService
                 });
             });
 
-        Debug.Log("[CONEXAO] 3 Iniciando conexão ao Hub");
+        Debug.Log("[CONEXAO] 3 Iniciando conexï¿½o ao Hub");
         try
         {
-            Debug.Log("[CONEXAO] Iniciando conexão ao Hub");
+            Debug.Log("[CONEXAO] Iniciando conexï¿½o ao Hub");
 
             await connection.StartAsync();
 
@@ -97,9 +97,13 @@ public class SignalRService
     {
         if (connection != null)
         {
-            await connection.StopAsync();
+            if (connection.State == HubConnectionState.Connected)
+            {
+                await connection.StopAsync();
+            }
 
             await connection.DisposeAsync();
+            connection = null;
         }
     }
 }

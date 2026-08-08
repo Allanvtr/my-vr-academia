@@ -1,9 +1,10 @@
 using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class StatusResponse
 {
-    public string id;
+    public string operationId;
     public string status;
-    public string audioUrl;
+    public List<string> audioUrl;
 }
