@@ -27,7 +27,7 @@ namespace VrAudioCena.WebApi.Infrastructure.Services.AI
         }
 
 
-        public async Task<List<string>> ProcessPresentationAsync(string presentation)
+        public async Task<List<string>> ProcessPresentationAsync(string presentation, int questionCount)
         {
             var request = new
             {
@@ -40,23 +40,28 @@ namespace VrAudioCena.WebApi.Infrastructure.Services.AI
                         content = $@"
                             Você é um membro da plateia assistindo a uma apresentação acadêmica.
 
-                            Com base exclusivamente na apresentação abaixo, gere exatamente 3 perguntas.
+                            Com base exclusivamente no conteúdo da apresentação abaixo, gere exatamente {questionCount} perguntas.
 
                             Regras:
-                            - Gere exatamente 3 perguntas.
-                            - As perguntas devem ser curtas, claras e objetivas.
-                            - Não inclua respostas, explicações ou comentários.
-                            - Não utilize numeração ou marcadores.
-                            - Se alguma informação não estiver presente na apresentação, não invente fatos.
+                            - Gere exatamente {questionCount} perguntas.
+                            - As perguntas devem ser curtas, claras, objetivas e relevantes ao conteúdo apresentado.
+                            - As perguntas devem explorar informações, conceitos, decisões, resultados ou aspectos apresentados na apresentação.
+                            - Não faça perguntas cuja resposta não possa ser inferida a partir do conteúdo da apresentação.
+                            - Não invente informações, dados, conceitos ou contextos que não estejam presentes na apresentação.
+                            - Não inclua respostas, explicações, comentários ou qualquer texto além das perguntas.
+                            - Não utilize numeração ou marcadores nas perguntas.
+                            - Evite perguntas muito semelhantes entre si.
+                            - Retorne exclusivamente um JSON válido.
+                            - Não utilize markdown, blocos de código ou texto antes ou depois do JSON.
 
-                            Retorne apenas um JSON válido, sem markdown e sem texto adicional, no seguinte formato:
+                            O JSON deve seguir exatamente este formato:
 
                             {{
-                            ""questions"": [
-                                ""Pergunta 1"",
-                                ""Pergunta 2"",
-                                ""Pergunta 3""
-                            ]
+                                ""questions"": [
+                                    ""Pergunta 1"",
+                                    ""Pergunta 2"",
+                                    ""Pergunta 3""
+                                ]
                             }}
 
                             Apresentação:

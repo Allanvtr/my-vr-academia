@@ -37,7 +37,8 @@ namespace VrAudioCena.WebApi.Core.Handlers
             }
             
             _operationRepository.UpdateStatus(notification.OperationId, OperationStatus.ProcessingAi);
-            var mensagem = await _aiService.ProcessPresentationAsync(text);
+            var mensagem = await _aiService.ProcessPresentationAsync(text, notification.QuestionCount);
+
             for (int i = 0; i < mensagem.Count; i++)
             {
                 _logger.LogInformation($"Question {i + 1}: {mensagem[i]}");

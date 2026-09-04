@@ -1,6 +1,5 @@
 import Logo from "../../components/Logo";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Text } from 'react-native';
 import styled from "styled-components/native";
 import * as S from './styles'
 import CustomButton from "../../components/CustomButton";
@@ -11,9 +10,10 @@ import { RootStackParamList } from '../../navigation';
 import { RouteProp } from '@react-navigation/native';
 import { metrics } from '../../constants/metrics';
 import { pick } from '@react-native-documents/picker';
-import { use, useState } from 'react';
+import { useState } from 'react';
 import { DocumentPickerResponse } from '@react-native-documents/picker';
 import api from "../../services/api";
+import { NativeModules } from 'react-native';
 
 type ContentPageRouteProp = RouteProp<
   RootStackParamList,
@@ -48,13 +48,15 @@ export default function ContentPage({ route }: Props){
     };
 
     const startScene = async () => {
-        if(selectedFile == null){
+        if (selectedFile == null) {
             setErrorMessage(true);
             return;
         }
+
         const formData = new FormData();
 
         formData.append("questionCount", metricValues.Perguntas);
+
         formData.append("file", {
             uri: selectedFile.uri,
             type: selectedFile.type,
@@ -63,7 +65,18 @@ export default function ContentPage({ route }: Props){
 
         try {
             const response = await api.post('/Scene/start', formData);
+
             console.log('Response:', response.data);
+
+            const tempoEmSegundos = metricValues.Tempo * 30;
+
+            NativeModules.UnityLauncher.openUnityApp(
+                tempoEmSegundos,
+                "Hello from React Native!",
+                response.data.operationId,
+                metricValues.Publico
+            );
+
         } catch (error: any) {
             console.log('Erro', error);
         }

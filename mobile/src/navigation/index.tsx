@@ -1,12 +1,10 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
 import Home from '../screens/Home';
 import ContentPage from '../screens/ContentPage';
 import MetricsPage from '../screens/MetricsPage';
-
-type metricType = 'Público' | 'Ruído' | 'Brilho' | 'Perguntas' | 'Tempo'
+import type { MetricType } from '../types/metrics';
 
 
 export type RootStackParamList = {
@@ -18,7 +16,7 @@ export type RootStackParamList = {
 
   ContentPage: {
     title: string,
-    metricValues: Record<metricType, number>;
+    metricValues: Record<MetricType, number>;
   }
 };
 

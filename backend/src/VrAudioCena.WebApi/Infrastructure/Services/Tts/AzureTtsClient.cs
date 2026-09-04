@@ -43,7 +43,11 @@ namespace VrAudioCena.WebApi.Infrastructure.Services.Tts
                 throw new Exception("AI feedback not found");
             }
 
-            var directory = "audio";
+            var directory = Path.Combine(
+                "wwwroot",
+                "audio"
+            );
+
             Directory.CreateDirectory(directory);
 
             var audioFiles = new List<string>();
@@ -87,7 +91,7 @@ namespace VrAudioCena.WebApi.Infrastructure.Services.Tts
                     );
                 }
 
-                audioFiles.Add(filePath);
+                audioFiles.Add($"audio/{operationId}_{i}.wav");
             }
             return audioFiles;
         }
