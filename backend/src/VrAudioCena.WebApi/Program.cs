@@ -7,6 +7,11 @@ using VrAudioCena.WebApi.Infrastructure.Services.Tts;
 using VrAudioCena.WebApi.Hubs;
 
 Env.Load();
+
+// Garante que wwwroot/audio exista antes da inicialização: se wwwroot não existir
+// quando o app sobe, o ASP.NET Core desativa os arquivos estáticos e os áudios gerados dão 404.
+Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "audio"));
+
 var builder = WebApplication.CreateBuilder(args);
 
 // 1. DEFINIR A POLÍTICA DE CORS (Antes do builder.Build())
@@ -33,7 +38,6 @@ builder.Services.AddSingleton<IPdfTextExtractor, PdfTextExtractor>();
 builder.Services.AddSingleton<ITextToSpeechService, AzureTtsClient>();
 
 var app = builder.Build();
-Console.WriteLine(app.Environment.WebRootPath);
 
 // 2. ATIVAR O CORS (Logo após o app.Build() e ANTES da Autorização/Endpoints)
 app.UseCors("PermitirReactEUnity");
