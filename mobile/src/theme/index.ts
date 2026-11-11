@@ -10,5 +10,8 @@ export default {
     semiBold: 'Poppins-SemiBold',
     bold: 'Poppins-Bold',
     medium: 'Poppins-Medium',
+  },
+  buttonsSize: {
+    back: 32,
   }
 };

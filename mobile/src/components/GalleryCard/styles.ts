@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { responsiveSize } from '../../utils/responsiveSize';
 
 export const Container = styled.TouchableOpacity`
   background-color: ${({ theme }) => theme.colors.background};
@@ -10,8 +11,8 @@ export const Container = styled.TouchableOpacity`
 
 export const CardImage = styled.Image`
   background-color: #767676;
-  height: 104px;
-  width: 104px;
+  height: ${responsiveSize(104)}px;
+  width: ${responsiveSize(104)}px;
   border-radius: 10px;
 `;
 
@@ -22,11 +23,12 @@ export const TextContainer = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-size: 18px; 
+  font-size: ${responsiveSize(16)}px; 
   font-family: ${({ theme }) => theme.fonts.bold};
 `;
 
 export const Description = styled.Text`
   margin-right: 5px;
   font-family: ${({ theme }) => theme.fonts.regular};
+  font-size: ${responsiveSize(12)}px;
 `;

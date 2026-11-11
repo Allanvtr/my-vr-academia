@@ -13,6 +13,7 @@ import { RouteProp } from '@react-navigation/native';
 import { metrics } from '../../constants/metrics';
 import { MetricType } from '../../types/metrics'
 import { formatTime } from '../../utils/formatTime'
+import { responsiveSize } from "../../utils/responsiveSize";
 
 type MetricsPageRouteProp = RouteProp<
   RootStackParamList,
@@ -37,11 +38,11 @@ export default function MetricsPage({ route }: Props) {
     });
 
     const metricConfig: Record<MetricType, { min: number; max: number }> = {
-        Publico: { min: 0, max: 50 },
+        Publico: { min: 0, max: 16 },
         Ruido: { min: 0, max: 10 },
         Brilho: { min: 0, max: 10 },
         Perguntas: { min: 0, max: 10 },
-        Tempo: { min: 0, max: 48 },
+        Tempo: { min: 0, max: 20 },
     };
 
     const [selectedMetric, setselectedMetric] = useState<MetricType>("Publico")
@@ -62,7 +63,7 @@ export default function MetricsPage({ route }: Props) {
                 >
                     <Ionicons
                         name="arrow-back-outline"
-                        size={41}
+                        size={responsiveSize(theme.buttonsSize.back)}
                         color="black"
                     />
                 </S.BackButton>
@@ -102,8 +103,8 @@ export default function MetricsPage({ route }: Props) {
                         thumbStyle={{ backgroundColor: theme.colors.secondary, width: 24, height: 24, borderRadius: 12 }} 
                     />
                 </S.SliderWrapper>
-                
             </S.SliderContainer>
+
             <S.MetricsButtonsContainer>
                 {metrics.map((item) =>(
                     <MetricButton
@@ -122,6 +123,7 @@ export default function MetricsPage({ route }: Props) {
                     metricValues
                 })}
             />
+            
             <BottomBar/>
         </S.Container>
     );

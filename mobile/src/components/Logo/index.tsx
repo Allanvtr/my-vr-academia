@@ -1,8 +1,9 @@
 import styled from 'styled-components/native';
+import { responsiveSize } from '../../utils/responsiveSize';
 
 const LogoText = styled.Text`
-    font-size: 32px;
-    padding-top: 50px;
+    font-size: ${responsiveSize(24)}px;
+    padding-top: ${responsiveSize(20)}px;
     font-family: ${({ theme }) => theme.fonts.regular};
     align-self: center;
     text-align: center;
@@ -10,6 +11,6 @@ const LogoText = styled.Text`
 
 export default function Logo() {
     return (
-        <LogoText>My VR Academy</LogoText>
+        <LogoText>My VR Academia</LogoText>
     );
 }
