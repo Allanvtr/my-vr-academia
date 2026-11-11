@@ -13,6 +13,7 @@ import { pick } from '@react-native-documents/picker';
 import { useState } from 'react';
 import { DocumentPickerResponse } from '@react-native-documents/picker';
 import api from "../../services/api";
+import { useTheme } from "styled-components/native";
 import { NativeModules } from 'react-native';
 
 type ContentPageRouteProp = RouteProp<
@@ -29,6 +30,7 @@ export default function ContentPage({ route }: Props){
     const { title, metricValues }= route.params;
     const [selectedFile, setSelectedFile] = useState<DocumentPickerResponse | null>(null);
     const [errorMessage, setErrorMessage] = useState(false);
+    const theme = useTheme();
 
     const pickFile = async () => {
         try {
@@ -91,14 +93,13 @@ export default function ContentPage({ route }: Props){
 
     return(
         <S.Container>
-
             <S.TopContainer>
                 <S.BackButton
                     onPress={navigation.goBack}
                 >
                     <Ionicons
                         name="arrow-back-outline"
-                        size={41}
+                        size={theme.buttonsSize.back}
                         color="black"
                     />
                 </S.BackButton>
@@ -117,7 +118,7 @@ export default function ContentPage({ route }: Props){
                 Apresentação
             </S.SectionTitle>
             <S.FileDescription>
-                Insira a sua apresentação (slides). Ela vai te auxiliar bla bla bla e gerar perguntas.
+                Insira a sua apresentação. Ela será utilizada para gerar perguntas e auxiliar na sua preparação.
             </S.FileDescription>
                 <S.FileButton onPress={pickFile}>
                     <S.FileButtonText>

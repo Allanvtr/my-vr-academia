@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { responsiveSize } from "../../utils/responsiveSize";
 
 export const TopContainer = styled.View`
     flex-direction: row;
@@ -9,8 +10,8 @@ export const TopContainer = styled.View`
 
 export const BackButton = styled.TouchableOpacity`
     position: absolute;
-    left: 10px;
-    margin-top: 45px;
+    left: ${responsiveSize(10)}px;
+    margin-top: ${responsiveSize(16)}px;
 `;
 
 export const Container = styled.View`
@@ -20,13 +21,13 @@ export const Container = styled.View`
 
 export const MetricTitle = styled.Text`
     text-align: center;
-    font-size: 30px;
+    font-size: ${responsiveSize(30)}px;
     font-family: ${({ theme }) => theme.fonts.semiBold};
-    margin-top: 40px;
+    margin-top: ${responsiveSize(20)}px;
 `;
 
 export const SliderContainer = styled.View`
-    margin-top: 40px;
+    margin-top: ${responsiveSize(20)}px;
     position: relative;
     justify-content: flex-end;
 `;
@@ -39,18 +40,18 @@ export const SliderWrapper = styled.View`
 export const FloatingNumberContainer = styled.View`
     position: absolute;
     width: 80%;
-    padding-horizontal: 10px; 
-    bottom: 35px;
+    padding-horizontal: ${responsiveSize(10)}px; 
+    bottom: ${responsiveSize(35)}px;
     align-self: center;
 `;
 
 export const FloatingNumber = styled.Text<{ percentage: number }>`
-    font-size: 16px;
+    font-size: ${responsiveSize(16)}px;
     font-family: ${({ theme }) => theme.fonts.semiBold};
     color: #000000;
     text-align: center;
 
-    width: 55px;
+    width: ${responsiveSize(55)}px;
 
     left: ${({ percentage }) => percentage}%;
     transform: translateX(-27px);
@@ -61,8 +62,8 @@ export const MetricsButtonsContainer = styled.View`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 20px;
-    column-gap: 15px;
-    row-gap: 20px;
-    margin-top: 30px;
+    padding: ${responsiveSize(20)}px;
+    column-gap: ${responsiveSize(15)}px;
+    row-gap: ${responsiveSize(20)}px;
+    margin-top: ${responsiveSize(20)}px;
 `;

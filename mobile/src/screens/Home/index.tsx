@@ -16,7 +16,7 @@ const data: SceneData[] = [
   {
     title: 'Sala de Aula',
     description: 'Ambiente virtual que simula uma sala de aula para prática de apresentações.',
-  },
+  }
 ];
 
 export default function Home() {
@@ -27,10 +27,13 @@ export default function Home() {
       <ScrollView
         showsVerticalScrollIndicator={false}
         stickyHeaderIndices={[2]} 
+        contentContainerStyle={{
+          flexGrow: 1,
+        }}
       >
         <Logo />
 
-        <S.HelloText>Olá, Allan</S.HelloText>
+        <S.HelloText>Olá, João</S.HelloText>
 
         <S.StickyHeaderContainer>
           <S.Header>
